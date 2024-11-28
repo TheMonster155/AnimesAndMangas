@@ -83,3 +83,4 @@ router.delete("/:id", async (req, res, next) => {
 module.exports = router;
 
 //modificare il modulo, name deve diventare titles anche nei manga, poi controllaare la get e cambiare name e diventare titles
+// aggiungere il cliente nei login 

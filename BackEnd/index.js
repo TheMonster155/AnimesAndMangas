@@ -13,6 +13,10 @@ const authErrorMiddleware = require('./middleware/authErrorMiddleware');
 const validationErrorMiddleware = require('./middleware/validationErrorMiddleware');
 const generalErrorMiddleware = require('./middleware/generalErrorMiddleware');
 
+const adminLoginRoute = require('./routes/loginAdminRoute');
+
+
+
 dotenv.config();
 
 const server = express();
@@ -24,6 +28,7 @@ server.use(cors());
 server.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 
 // Rotte
+server.use('/api/auth', adminLoginRoute);
 server.use('/api/auth', registerRoute);
 server.use('/api/auth', loginRoute);
 server.use('/api/manga', mangaRoutes);

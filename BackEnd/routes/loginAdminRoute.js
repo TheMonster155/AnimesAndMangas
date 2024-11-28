@@ -1,47 +1,10 @@
-/*
-const express = require('express');
+/*const express = require('express');
 const User = require('../modules/user');
 
 const router = express.Router();
 
-router.post('/login', async (req, res, next) => {
-  try {
-    const { email, password } = req.body;
-
-    if (!email || !password) {
-      return next({ type: 'validation', message: 'Email e password sono obbligatori' });
-    }
-
-    const user = await User.findOne({ email });
-    if (!user) {
-      return next({ type: 'auth', message: 'Credenziali non valide' });
-    }
-
-    const isPasswordValid = await user.comparePassword(password);
-    if (!isPasswordValid) {
-      return next({ type: 'auth', message: 'Credenziali non valide' });
-    }
-
-    res.status(200).json({
-      message: 'Login effettuato con successo',
-      role: user.role,
-    });
-  } catch (err) {
-    next(err);
-  }
-});
-
-module.exports = router;
-*/
-
-/*
-const express = require('express');
-const User = require('../modules/user');
-
-const router = express.Router();
-
-// Login per utenti con ruolo "normal" o "seller"
-router.post('/login', async (req, res, next) => {
+// Login per amministratori
+router.post('/admin/login', async (req, res, next) => {
   try {
     const { email, password } = req.body;
 
@@ -60,14 +23,14 @@ router.post('/login', async (req, res, next) => {
       return next({ type: 'auth', message: 'Credenziali non valide' });
     }
 
-    // Permetti il login solo se il ruolo è "normal" o "seller"
-    if (user.role !== 'normal' && user.role !== 'seller') {
+    // Permetti il login solo se il ruolo è "admin"
+    if (user.role !== 'admin') {
       return next({ type: 'auth', message: 'Accesso non autorizzato per questo ruolo' });
     }
 
     // Risposta con il ruolo e un messaggio
     res.status(200).json({
-      message: 'Login effettuato con successo',
+      message: 'Login amministratore effettuato con successo',
       role: user.role,
     });
   } catch (err) {
@@ -84,8 +47,8 @@ const User = require('../modules/user');
 
 const router = express.Router();
 
-// Login per utenti normali e venditori
-router.post('/login', async (req, res, next) => {
+// Login per amministratori
+router.post('/admin/login', async (req, res, next) => {
   try {
     const { email, password } = req.body;
 
@@ -94,8 +57,8 @@ router.post('/login', async (req, res, next) => {
     }
 
     const user = await User.findOne({ email });
-    if (!user) {
-      return next({ type: 'auth', message: 'Credenziali non valide' });
+    if (!user || user.role !== 'admin') {
+      return next({ type: 'auth', message: 'Credenziali non valide o non sei un amministratore' });
     }
 
     const isPasswordValid = await user.comparePassword(password);
@@ -107,11 +70,11 @@ router.post('/login', async (req, res, next) => {
     const token = jwt.sign(
       { id: user._id, role: user.role },
       process.env.JWT_SECRET,
-      { expiresIn: '2h' } // Il token scade in 2 ore
+      { expiresIn: '2h' }
     );
 
     res.status(200).json({
-      message: 'Login effettuato con successo',
+      message: 'Login amministratore effettuato con successo',
       token,
       role: user.role,
     });
