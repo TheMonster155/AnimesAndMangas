@@ -1,123 +1,48 @@
-/*
-const express = require('express');
-const User = require('../modules/user');
+const express = require("express");
+const User = require("../modules/user");
+const Seller = require("../modules/seller");
 
-const router = express.Router();
+const login = express.Router();
 
-router.post('/login', async (req, res, next) => {
+// Login per autenticare gli utenti e i venditori
+login.post("/login", async (req, res, next) => {
   try {
     const { email, password } = req.body;
 
     if (!email || !password) {
-      return next({ type: 'validation', message: 'Email e password sono obbligatori' });
+      return res.status(400).json({
+        error: "Email e password sono obbligatori",
+      });
     }
 
-    const user = await User.findOne({ email });
+    // Cerca prima nel modello User
+    let user = await User.findOne({ email });
     if (!user) {
-      return next({ type: 'auth', message: 'Credenziali non valide' });
+      // Se non trovato, cerca nel modello Seller
+      user = await Seller.findOne({ email });
+      if (!user) {
+        return res.status(401).json({
+          error: "Credenziali non valide",
+        });
+      }
     }
 
     const isPasswordValid = await user.comparePassword(password);
     if (!isPasswordValid) {
-      return next({ type: 'auth', message: 'Credenziali non valide' });
+      return res.status(401).json({
+        error: "Credenziali non valide",
+      });
     }
 
+    // Risposta con informazioni dell'utente, senza token
     res.status(200).json({
-      message: 'Login effettuato con successo',
-      role: user.role,
+      message: "Login effettuato con successo",
+      role: user.role, // Ruolo dell'utente (admin, seller, user)
+      userId: user._id, // ID dell'utente
     });
   } catch (err) {
     next(err);
   }
 });
 
-module.exports = router;
-*/
-
-/*
-const express = require('express');
-const User = require('../modules/user');
-
-const router = express.Router();
-
-// Login per utenti con ruolo "normal" o "seller"
-router.post('/login', async (req, res, next) => {
-  try {
-    const { email, password } = req.body;
-
-    if (!email || !password) {
-      return next({ type: 'validation', message: 'Email e password sono obbligatori' });
-    }
-
-    const user = await User.findOne({ email });
-    if (!user) {
-      return next({ type: 'auth', message: 'Credenziali non valide' });
-    }
-
-    // Verifica la password
-    const isPasswordValid = await user.comparePassword(password);
-    if (!isPasswordValid) {
-      return next({ type: 'auth', message: 'Credenziali non valide' });
-    }
-
-    // Permetti il login solo se il ruolo è "normal" o "seller"
-    if (user.role !== 'normal' && user.role !== 'seller') {
-      return next({ type: 'auth', message: 'Accesso non autorizzato per questo ruolo' });
-    }
-
-    // Risposta con il ruolo e un messaggio
-    res.status(200).json({
-      message: 'Login effettuato con successo',
-      role: user.role,
-    });
-  } catch (err) {
-    next(err);
-  }
-});
-
-module.exports = router;
-*/
-
-const express = require('express');
-const jwt = require('jsonwebtoken');
-const User = require('../modules/user');
-
-const router = express.Router();
-
-// Login per utenti normali e venditori
-router.post('/login', async (req, res, next) => {
-  try {
-    const { email, password } = req.body;
-
-    if (!email || !password) {
-      return next({ type: 'validation', message: 'Email e password sono obbligatori' });
-    }
-
-    const user = await User.findOne({ email });
-    if (!user) {
-      return next({ type: 'auth', message: 'Credenziali non valide' });
-    }
-
-    const isPasswordValid = await user.comparePassword(password);
-    if (!isPasswordValid) {
-      return next({ type: 'auth', message: 'Credenziali non valide' });
-    }
-
-    // Generazione del token JWT
-    const token = jwt.sign(
-      { id: user._id, role: user.role },
-      process.env.JWT_SECRET,
-      { expiresIn: '2h' } // Il token scade in 2 ore
-    );
-
-    res.status(200).json({
-      message: 'Login effettuato con successo',
-      token,
-      role: user.role,
-    });
-  } catch (err) {
-    next(err);
-  }
-});
-
-module.exports = router;
+module.exports = login;

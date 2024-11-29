@@ -15,17 +15,20 @@ const mangaGenres = [
   "Comedy",
 ];
 
-const mangaSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  publisher: { type: String, required: true },
-  author: { type: String, required: true },
-  category: { type: String, required: true },
-  genres: [{ type: String, enum: mangaGenres, required: true }],
-  language: { type: String, required: true },
-  price: { type: Number, required: true },
-  availability: { type: Boolean, default: true },
-  releaseDate: { type: Date, required: true },
-  photoUrl: { type: String, required: true }, // URL di Cloudinary
-}, { timestamps: true });
+const mangaSchema = new mongoose.Schema(
+  {
+    name: { type: String, required: true },
+    publisher: { type: String, required: true },
+    author: { type: String, required: true },
+    category: { type: String, required: true },
+    genres: [{ type: String, enum: mangaGenres, required: true }],
+    language: { type: String, required: true },
+    price: { type: Number, required: true },
+    availability: { type: Boolean, default: true }, // type number x
+    releaseDate: { type: Date, required: true },
+    photoUrl: { type: String, required: true }, // URL di Cloudinary
+  },
+  { timestamps: true, strict: true }
+);
 
-module.exports = mongoose.model("Manga", mangaSchema,"manga");
+module.exports = mongoose.model("Manga", mangaSchema, "manga");

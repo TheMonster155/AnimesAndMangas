@@ -1,11 +1,14 @@
 const express = require("express");
 const Manga = require("../modules/manga");
 const validationErrorMiddleware = require("../middleware/validationErrorMiddleware");
+const cloud = require("./cloudinary");
 
-const router = express.Router();
-
+const manga = express.Router(); //cambiare
+// post aggiungere il nome
 // Rotta per aggiungere un manga
-router.post("/", async (req, res, next) => {
+
+/*
+manga.post("/manga/create", async (req, res, next) => {
   try {
     const manga = new Manga(req.body);
     await manga.save();
@@ -16,10 +19,44 @@ router.post("/", async (req, res, next) => {
     }
     next(err);
   }
+});*/
+/*
+manga.post("/manga/create", cloud.single("file"), async (req, res, next) => {
+  try {
+    const manga = new Manga(req.body);
+    await manga.save();
+    res.status(201).json({
+      message: "File uploaded successfully",
+      file: {
+        url: req.file.path,
+        public_id: req.file.filename,
+      },
+    });
+  } catch (err) {
+    if (err.name === "ValidationError") {
+      err.type = "validation";
+    }
+    next(err);
+  }
+});
+*/
+manga.post("/manga/create", cloud.single("file"), async (req, res, next) => {
+  try {
+    console.log("File ricevuto:", req.file); // Logga req.file
+    if (!req.file) {
+      return res.status(400).json({ message: "No file uploaded" });
+    }
+
+    console.log("Body ricevuto:", req.body); // Logga req.body
+    res.status(200).json({ message: "File elaborato con successo" });
+  } catch (error) {
+    console.error("Errore:", error); // Log dell'errore
+    next(error);
+  }
 });
 
 // Rotta GET generale (tutti i manga)
-router.get("/", async (req, res, next) => {
+manga.get("/manga", async (req, res, next) => {
   try {
     const mangas = await Manga.find();
     res.status(200).json(mangas);
@@ -29,7 +66,7 @@ router.get("/", async (req, res, next) => {
 });
 
 // Rotta GET per ottenere solo i titoli dei manga
-router.get("/titles", async (req, res, next) => {
+manga.get("/manga/titles", async (req, res, next) => {
   try {
     const titles = await Manga.find().select("name -_id");
     res.status(200).json(titles);
@@ -39,7 +76,7 @@ router.get("/titles", async (req, res, next) => {
 });
 
 // Rotta GET per ottenere un manga specifico tramite ID
-router.get("/:id", async (req, res, next) => {
+manga.get("/manga/:id", async (req, res, next) => {
   try {
     const manga = await Manga.findById(req.params.id);
     if (!manga) {
@@ -52,9 +89,12 @@ router.get("/:id", async (req, res, next) => {
 });
 
 // Rotta PATCH per aggiornare un manga tramite ID
-router.patch("/:id", async (req, res, next) => {
+manga.patch("/manga/update//:id", async (req, res, next) => {
   try {
-    const manga = await Manga.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
+    const manga = await Manga.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true,
+    });
     if (!manga) {
       return res.status(404).json({ error: "Manga non trovato" });
     }
@@ -68,7 +108,7 @@ router.patch("/:id", async (req, res, next) => {
 });
 
 // Rotta DELETE per eliminare un manga tramite ID
-router.delete("/:id", async (req, res, next) => {
+manga.delete("manga/delete/:id", async (req, res, next) => {
   try {
     const manga = await Manga.findByIdAndDelete(req.params.id);
     if (!manga) {
@@ -80,4 +120,23 @@ router.delete("/:id", async (req, res, next) => {
   }
 });
 
-module.exports = router;
+module.exports = manga;
+
+/*
+manga.post("/manga", cloud.single("file"), async (req, res, next) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ message: "No file uploaded" });
+    }
+
+    res.status(201).json({
+      message: "File uploaded successfully",
+      file: {
+        url: req.file.path,
+        public_id: req.file.filename,
+      },
+    });
+  } catch (error) {
+    next(error);
+  }
+});*/

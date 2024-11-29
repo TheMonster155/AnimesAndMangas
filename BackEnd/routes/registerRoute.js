@@ -1,28 +1,48 @@
-const express = require('express');
-const User = require('../modules/user');
+const express = require("express");
+const User = require("../modules/user");
 
-const router = express.Router();
+const register = express.Router();
 
-router.post('/register', async (req, res, next) => {
+register.post("/user/create", async (req, res, next) => {
   try {
-    const { email, password, gender, birthYear, address, username, surname } = req.body;
+    const { email, password, gender, birthYear, address, username, surname } =
+      req.body;
 
     // Verifica che tutti i campi necessari siano presenti
-    if (!email || !password || !gender || !birthYear || !address || !username || !surname) {
-      return next({ type: 'validation', message: 'Tutti i campi sono obbligatori' });
+    if (
+      !email ||
+      !password ||
+      !gender ||
+      !birthYear ||
+      !address ||
+      !username ||
+      !surname
+    ) {
+      return next({
+        type: "validation",
+        message: "Tutti i campi sono obbligatori",
+      });
     }
 
-    const user = new User({ email, password, gender, birthYear, address, username, surname });
+    const user = new User({
+      email,
+      password,
+      gender,
+      birthYear,
+      address,
+      username,
+      surname,
+    });
     await user.save();
 
-    res.status(201).json({ message: 'Utente registrato con successo' });
+    res.status(201).json({ message: "Utente registrato con successo" });
   } catch (err) {
     if (err.code === 11000) {
-      next({ type: 'validation', message: 'Email o username già registrati' });
+      next({ type: "validation", message: "Email o username già registrati" });
     } else {
       next(err);
     }
   }
 });
 
-module.exports = router;
+module.exports = register;

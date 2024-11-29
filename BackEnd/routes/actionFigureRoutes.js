@@ -2,10 +2,11 @@ const express = require("express");
 const ActionFigure = require("../modules/actionFigure");
 const validationErrorMiddleware = require("../middleware/validationErrorMiddleware");
 
-const router = express.Router();
+const actionFigure = express.Router();
 
 // Rotta per aggiungere un action figure
-router.post("/", async (req, res, next) => {
+actionFigure.post("/actionFigure/create", async (req, res, next) => {
+  console.log("Data ricevuta:", req.body);
   try {
     const actionFigure = new ActionFigure(req.body);
     await actionFigure.save();
@@ -19,7 +20,7 @@ router.post("/", async (req, res, next) => {
 });
 
 // Rotta GET generale (tutte le action figure)
-router.get("/", async (req, res, next) => {
+actionFigure.get("/actionFigure", async (req, res, next) => {
   try {
     const actionFigures = await ActionFigure.find();
     res.status(200).json(actionFigures);
@@ -29,7 +30,7 @@ router.get("/", async (req, res, next) => {
 });
 
 // Rotta GET per ottenere solo i nomi delle action figure
-router.get("/names", async (req, res, next) => {
+actionFigure.get("/actionFigure/names", async (req, res, next) => {
   try {
     const names = await ActionFigure.find().select("name -_id");
     res.status(200).json(names);
@@ -39,7 +40,7 @@ router.get("/names", async (req, res, next) => {
 });
 
 // Rotta GET per ottenere una action figure specifica tramite ID
-router.get("/:id", async (req, res, next) => {
+actionFigure.get("/actionFigure/:id", async (req, res, next) => {
   try {
     const actionFigure = await ActionFigure.findById(req.params.id);
     if (!actionFigure) {
@@ -52,9 +53,13 @@ router.get("/:id", async (req, res, next) => {
 });
 
 // Rotta PATCH per aggiornare una action figure tramite ID
-router.patch("/:id", async (req, res, next) => {
+actionFigure.patch("/actionFigure/update/:id", async (req, res, next) => {
   try {
-    const actionFigure = await ActionFigure.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
+    const actionFigure = await ActionFigure.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true, runValidators: true }
+    );
     if (!actionFigure) {
       return res.status(404).json({ error: "Action Figure non trovata" });
     }
@@ -68,7 +73,7 @@ router.patch("/:id", async (req, res, next) => {
 });
 
 // Rotta DELETE per eliminare una action figure tramite ID
-router.delete("/:id", async (req, res, next) => {
+actionFigure.delete("/actionFigure/delete/:id", async (req, res, next) => {
   try {
     const actionFigure = await ActionFigure.findByIdAndDelete(req.params.id);
     if (!actionFigure) {
@@ -80,7 +85,7 @@ router.delete("/:id", async (req, res, next) => {
   }
 });
 
-module.exports = router;
+module.exports = actionFigure;
 
 //modificare il modulo, name deve diventare titles anche nei manga, poi controllaare la get e cambiare name e diventare titles
-// aggiungere il cliente nei login 
+// aggiungere il cliente nei login

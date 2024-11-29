@@ -1,21 +1,18 @@
-const express = require('express');
-const cors = require('cors');
-const path = require('path');
-const dotenv = require('dotenv');
-const init = require('./db');
-
+const express = require("express");
+const cors = require("cors");
+const path = require("path");
+const dotenv = require("dotenv");
+const init = require("./db");
 
 const mangaRoutes = require("./routes/mangaRoutes");
 const actionFigureRoutes = require("./routes/actionFigureRoutes");
-const registerRoute = require('./routes/registerRoute');
-const loginRoute = require('./routes/loginRoute');
-const authErrorMiddleware = require('./middleware/authErrorMiddleware');
-const validationErrorMiddleware = require('./middleware/validationErrorMiddleware');
-const generalErrorMiddleware = require('./middleware/generalErrorMiddleware');
+const registerRoute = require("./routes/registerRoute");
+const loginRoute = require("./routes/loginRoute");
+const authErrorMiddleware = require("./middleware/authErrorMiddleware");
+const validationErrorMiddleware = require("./middleware/validationErrorMiddleware");
+const generalErrorMiddleware = require("./middleware/generalErrorMiddleware");
 
-const adminLoginRoute = require('./routes/loginAdminRoute');
-
-
+const registerSeller = require("./routes/registerSellerRouter");
 
 dotenv.config();
 
@@ -25,14 +22,14 @@ const PORT = 3050;
 // Middleware globali
 server.use(express.json());
 server.use(cors());
-server.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 
 // Rotte
-server.use('/api/auth', adminLoginRoute);
-server.use('/api/auth', registerRoute);
-server.use('/api/auth', loginRoute);
-server.use('/api/manga', mangaRoutes);
-server.use('/api/action-figure', actionFigureRoutes);
+server.use("/", registerRoute);
+server.use("/", loginRoute);
+
+server.use("/", mangaRoutes);
+server.use("/", actionFigureRoutes);
+server.use("/", registerSeller);
 
 // Middleware per errori
 server.use(authErrorMiddleware);
