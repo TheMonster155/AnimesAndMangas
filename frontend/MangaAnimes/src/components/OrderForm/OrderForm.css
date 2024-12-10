@@ -1,0 +1,163 @@
+/* Stili per il modulo d'ordine */
+/*
+.orderFormBody {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .title {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .cartTitle {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .cartItem {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .cartItemDetails {
+    flex: 1;
+    padding-right: 20px;
+  }
+  
+  .cartItemTitle {
+    font-size: 1.25rem;
+    margin: 0;
+  }
+  
+  .quantityControls {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .decrementButton,
+  .incrementButton {
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .decrementButton:disabled,
+  .incrementButton:disabled {
+    cursor: not-allowed;
+  }
+  
+  .removeButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .cartItemImage {
+    max-width: 100px;
+    height: auto;
+    object-fit: contain;
+  }
+  
+  .paymentSection {
+    margin-top: 20px;
+  }
+  
+  .button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 5px;
+    margin-top: 20px;
+  }
+  
+  .button:disabled {
+    background-color: #ccc;
+  }
+  
+  .cardElement {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 10px;
+    width: 100%;
+  }
+  
+  .statusMessage {
+    margin-top: 20px;
+    font-size: 1rem;
+    color: green;
+  }
+  
+  .statusMessage.error {
+    color: red;
+  }
+  
+  .cartItemDetails p,
+  .cartItemDetails span {
+    margin-top: 10px;
+  }
+  */
+  /* CSS per il form di pagamento */
+
+
+  .orderForm {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+  }
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  form div {
+    margin-bottom: 15px;
+  }
+  
+  form label {
+    font-weight: bold;
+  }
+  
+  form input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-top: 20px;
+  }
+  
+  button:disabled {
+    background-color: #ccc;
+  }
+  
+  .payment-form {
+    margin-top: 20px;
+  }
+  

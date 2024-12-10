@@ -12,7 +12,7 @@ const cloudStorage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
     folder: "EPISERVERUPLOADS",
-    allowed_formats: ["jpg", "png", "gif", "mp4"],
+    allowed_formats: ["jpg", "png", "gif", "mp4", "webp", "avif", "hevc"],
     format: async (req, file) => "png",
     public_id: (req, file) => file.name,
   },
@@ -21,3 +21,4 @@ const cloudStorage = new CloudinaryStorage({
 const cloud = multer({ storage: cloudStorage });
 
 module.exports = cloud;
+//TODO: cambiare tutte gli avvisi da ita in eng e togiere

@@ -1,0 +1,9 @@
+
+  /* Aggiungi uno spazio tra i componenti */
+.space-between {
+    height: 200px; /* Spazio tra la HomePage e il Footer */
+  }
+  .space-up {
+    height: 30px; /* Spazio tra la HomePage e il Footer */
+  }
+  

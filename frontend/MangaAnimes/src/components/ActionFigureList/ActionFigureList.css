@@ -1,0 +1,61 @@
+/* Contenitore immagine: mantiene l'immagine con altezza fissa */
+.card-img-container {
+    height: 200px; /* Altezza aumentata per le immagini */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f9fa; /* Sfondo neutro */
+    overflow: hidden; /* Nasconde eventuali contenuti fuori dal contenitore */
+  }
+  
+  /* Stile immagine: assicura che l'immagine si adatti bene al contenitore */
+  .card-img-container img {
+    max-height: 100%; /* L'immagine non deve superare l'altezza del contenitore */
+    max-width: 100%; /* L'immagine non deve superare la larghezza del contenitore */
+    object-fit: cover; /* Si adatta senza distorcere */
+  }
+  
+  /* Card generica: estende la card con bordo e ombreggiatura */
+  .card {
+    width: calc(100% - 30px); /* Riduzione della larghezza della card di 30px */
+    height: calc(100% + 40px); /* Aumento dell'altezza della card di 40px */
+    border: 1px solid #ddd; /* Bordo chiaro */
+    border-radius: 5px; /* Angoli arrotondati */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombra leggera */
+    overflow: hidden; /* Nasconde eventuali contenuti che escono */
+    background-color: #fff; /* Sfondo bianco */
+  }
+  
+  /* Corpo della card: stile per il contenuto */
+  .card-body {
+    padding: 15px;
+  }
+  
+  /* Titolo della card */
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  /* Descrizione del prezzo */
+  .card-text {
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  /* Bottone di aggiunta al carrello */
+  .card-btn {
+    padding: 8px 16px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .card-btn:hover {
+    background-color: #218838;
+  }
+  
