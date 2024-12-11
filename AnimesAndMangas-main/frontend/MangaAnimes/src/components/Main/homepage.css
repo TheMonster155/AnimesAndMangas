@@ -1,0 +1,213 @@
+/* Stile per il primo carousel */
+/*
+.carousel-small {
+    max-height: 300px;
+    overflow: hidden;
+    position: relative; 
+}
+
+
+.card-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px; 
+}
+
+
+.card-custom {
+    width: 18rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+
+.card-custom img {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    width: 100%; 
+    height: auto;
+}
+
+
+.card-body-custom {
+    padding: 15px;
+}
+
+
+.footer-space {
+    height: 70px;
+}
+
+
+.carousel-indicators {
+    bottom: -40px; 
+    display: flex;
+    justify-content: center; 
+    gap: 10px; 
+}
+
+
+.carousel-indicators li {
+    width: 12px; 
+    height: 12px; 
+    border-radius: 50%; 
+   color: black;
+    border: none; /
+    transition: background-color 0.3s ease, transform 0.3s ease; 
+}
+
+
+.carousel-indicators .active {
+    background-color: transparent !important; 
+    border: 2px solid red !important; 
+    transform: scale(1.2); 
+}
+*/
+
+
+/* Stile per il carosello di dimensione media */
+.carousel-medium {
+    max-width: 80%; /* O la dimensione che preferisci */
+    margin: 0 auto;
+}
+
+/* Stile per il primo carosello con altezza limitata */
+.carousel-small {
+    max-height: 300px;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Stile per il contenitore delle card, con distribuzione flessibile */
+.card-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+/* Stile personalizzato per le card */
+.card-custom {
+    width: 18rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 20px; /* Distanza tra le card */
+}
+
+/* Immagini delle card con angoli arrotondati */
+.card-custom img {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    width: 100%;
+    height: 250px;
+    object-fit: cover; /* Mantieni proporzioni immagini */
+    transition: transform 0.3s ease; /* Transizione per l'hover */
+}
+
+/* Effetto hover sulle card */
+.card-custom:hover {
+    transform: translateY(-5px); /* Aggiungi l'effetto di sollevamento */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Stile del corpo delle card */
+.card-body-custom {
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+/* Testo delle card */
+.card-body-custom h5 {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+/* Effetto hover sull'immagine delle card */
+.card-custom:hover img {
+    transform: scale(1.05); /* Ingrandisce l'immagine al passaggio del mouse */
+}
+
+/* Pulsante Aggiungi al carrello */
+.card-body-custom .btn {
+    background-color: #007bff;
+    border-color: #007bff;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.card-body-custom .btn:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+}
+
+/* Spazio nel footer */
+.footer-space {
+    height: 70px;
+}
+
+/* Posizionamento dei cerchi sotto il carosello */
+.carousel-indicators {
+    bottom: -40px;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.carousel-indicators li {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #ddd;
+    border: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Cerchio attivo nel carosello */
+.carousel-indicators .active {
+    background-color: #007bff !important;
+    transform: scale(1.3);
+}
+
+/* Stile per il carosello con una transizione più fluida */
+.carousel-item {
+    transition: transform 1s ease;
+}
+
+/* Responsività per schermi piccoli */
+@media (max-width: 768px) {
+    .card-custom {
+        width: 15rem; /* Diminuisce la larghezza su schermi più piccoli */
+    }
+    .carousel-small {
+        max-height: 250px;
+    }
+
+    /* Riduce la dimensione della card quando la larghezza dello schermo è piccola */
+    .card-body-custom h5 {
+        font-size: 1rem;
+    }
+
+    .carousel-medium {
+        max-width: 95%; /* Adatta il carosello alla larghezza dello schermo */
+    }
+}
+
+/* Altre ottimizzazioni per schermi molto piccoli (es. dispositivi mobili) */
+@media (max-width: 480px) {
+    .card-custom {
+        width: 14rem; /* Diminuisce ulteriormente la larghezza */
+    }
+    .carousel-small {
+        max-height: 200px; /* Riduce l'altezza del carosello su schermi molto piccoli */
+    }
+    .carousel-indicators {
+        bottom: -30px; /* Aumenta lo spazio tra i cerchi e il carosello */
+    }
+}

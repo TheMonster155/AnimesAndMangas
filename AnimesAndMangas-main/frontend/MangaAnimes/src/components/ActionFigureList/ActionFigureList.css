@@ -1,0 +1,80 @@
+/* Spaziatura sopra e sotto la lista delle action figure */
+.action_space_up {
+  height: 100px;
+}
+
+.action_space_down {
+  height: 100px;
+}
+
+/* Contenitore dell'immagine per adattarla alla card */
+.card-img-container {
+  height: 200px; /* Altezza fissa per le immagini */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8f9fa; /* Sfondo neutro */
+  overflow: hidden; /* Nasconde eventuali contenuti fuori dal contenitore */
+}
+
+/* Stile per l'immagine della card */
+.card-img-container img {
+  max-height: 100%; /* Limita l'altezza dell'immagine al contenitore */
+  max-width: 100%; /* Limita la larghezza dell'immagine al contenitore */
+  object-fit: cover; /* Adatta l'immagine senza distorsioni */
+}
+
+/* Stile per la card delle action figure */
+.card {
+  background-color: rgba(255, 255, 255, 0.5); /* Sfondo trasparente per la card */
+  border: 1px solid #ddd; /* Bordo chiaro */
+  border-radius: 8px; /* Angoli arrotondati */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombra leggera */
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Animazione al passaggio del mouse */
+  position: relative; /* Necessario per un corretto stacking */
+  height: 100%; /* Altezza della card */
+  overflow: hidden; /* Nasconde contenuti che escono dalla card */
+}
+
+.card:hover {
+  transform: translateY(-5px); /* Solleva la card al passaggio del mouse */
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Aumenta l'ombra */
+  z-index: 10; /* Solleva la card sopra gli altri elementi */
+}
+
+/* Corpo della card */
+.card-body {
+  background-color: rgba(255, 255, 255, 0.3); /* Sfondo trasparente */
+  backdrop-filter: blur(5px); /* Effetto sfocato */
+  padding: 15px;
+  position: relative; /* Necessario per il corretto stacking */
+  z-index: 2; /* Livello superiore rispetto all'immagine */
+}
+
+/* Titolo della card */
+.card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Descrizione del prezzo */
+.card-text {
+  font-size: 1rem;
+  color: #555;
+}
+
+/* Bottone per aggiungere al carrello */
+.card-btn {
+  padding: 8px 16px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.card-btn:hover {
+  background-color: #218838;
+}

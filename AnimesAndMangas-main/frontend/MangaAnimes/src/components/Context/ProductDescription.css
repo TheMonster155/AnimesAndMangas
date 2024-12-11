@@ -1,0 +1,24 @@
+/* Contenitore della descrizione */
+.product-description {
+    margin-top: 20px;
+  }
+  
+  /* Box per la descrizione con sfondo grigio chiaro */
+  .product-description .description-box {
+    background-color: #d3d3d3b9; /* Grigio chiaro */
+    width: 1000px; /* Larghezza fissa */
+    height: 200px; /* Altezza del 50% rispetto al contenitore */
+    padding: 20px;
+    box-sizing: border-box; /* Per includere padding nelle dimensioni */
+    border-radius: 10px; /* Angoli arrotondati */
+    overflow: hidden; /* Per evitare che il testo esca dal box */
+  }
+  
+  /* Stile per il testo della descrizione */
+  .product-description .description-box p {
+    margin: 0;
+    color: #333; /* Colore del testo */
+    font-size: 16px; /* Dimensione del font */
+    line-height: 1.5; /* Altezza della linea per maggiore leggibilità */
+  }
+  

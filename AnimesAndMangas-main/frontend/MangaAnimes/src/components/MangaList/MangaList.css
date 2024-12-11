@@ -1,0 +1,47 @@
+/* Spaziatura sopra e sotto la lista manga */
+.manga-list-space-down {
+    height: 30px;
+}
+
+.manga-list-space-up {
+    height: 200px;
+}
+
+/* Stile per la card */
+.card {
+    background-color: rgba(255, 255, 255, 0.5); /* Sfondo trasparente */
+    border: 1px solid #ddd; /* Bordo leggero */
+    border-radius: 8px; /* Angoli arrotondati */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Leggera ombra */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Animazione al passaggio del mouse */
+    position: relative; /* Necessario per il corretto stacking */
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Solleva la card al passaggio del mouse */
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Aumenta l'ombra */
+    z-index: 10; /* Aggiunge un livello superiore al passaggio del mouse */
+}
+
+/* Stile per l'immagine */
+.card-img-top {
+    z-index: 1; /* Assicura che l'immagine abbia un livello superiore rispetto alla card */
+    position: relative; /* Necessario per il corretto stacking */
+    border-bottom: 1px solid #ddd; /* Separatore tra immagine e contenuto */
+    height: 200px; /* Altezza fissa per le immagini */
+    object-fit: cover; /* Adatta l'immagine */
+}
+
+/* Stile per il corpo della card */
+.card-body {
+    background-color: rgba(255, 255, 255, 0.3); /* Sfondo ancora più trasparente */
+    backdrop-filter: blur(5px); /* Effetto sfocato */
+    padding: 15px; /* Spaziatura interna */
+    position: relative; /* Assicura che il layer sia corretto */
+    z-index: 2; /* Imposta un livello superiore rispetto all'immagine */
+}
+
+/* Stile per il cursore delle card */
+.card-container {
+    cursor: pointer;
+}
