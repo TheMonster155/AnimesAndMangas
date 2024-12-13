@@ -348,7 +348,13 @@
   color: #e91e63;
 }
 */
+/* Logo */
 
+
+/* Logo */
+/* Logo */
+
+/* Logo */
 .logo-img {
   height: 40px;
 }
@@ -366,30 +372,6 @@
   color: #e91e63;
 }
 
-/* Search Bar */
-.search-bar {
-  top: 60px; /* Regola in base all'altezza della navbar */
-  right: 0;
-  background-color: white;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  padding: 5px;
-  z-index: 1000;
-  width: 300px;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.search-input {
-  border: none;
-  font-size: 16px;
-  padding: 10px;
-}
-
-.search-input:focus {
-  outline: none;
-  border: 2px solid #e91e63;
-}
-
 /* Navbar Icons */
 .navbar-icons {
   gap: 20px; /* Spazio uniforme tra le icone */
@@ -404,4 +386,59 @@
 
 .navbar-icons .btn:hover {
   color: #e91e63; /* Colore al passaggio del mouse */
+}
+
+.dashboard-dropdown {
+  position: absolute;
+  top: 50px;
+  right: 50;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.dashboard-dropdown .nav-link {
+  color: #333;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 8px;
+  transition: color 0.3s;
+}
+
+.dashboard-dropdown .nav-link:hover {
+  color: #e91e63;
+}
+
+/* Responsiveness */
+@media (max-width: 991px) {
+  /* Ridurre la dimensione del logo su schermi piccoli */
+  .logo-img {
+    height: 30px;
+  }
+
+  /* Navbar Links devono essere visibili in orizzontale */
+  .navbar-nav .nav-item {
+    display: inline-block; /* Rende i link visibili in orizzontale */
+  }
+
+  /* Icône navbar a destra */
+  .navbar-icons {
+    gap: 15px;
+  }
+}
+
+@media (max-width: 576px) {
+  /* Ridurre ulteriormente la dimensione del logo su schermi molto piccoli */
+  .logo-img {
+    height: 25px;
+  }
+
+  /* Aggiustamenti per la ricerca e i pulsanti */
+  .search-bar {
+    width: 250px;
+    right: 10px;
+  }
 }

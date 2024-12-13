@@ -34,11 +34,6 @@ const commentSchema = new mongoose.Schema(
           ref: "Manga", // Riferimento al modello Manga
           required: false, // Per supportare anche i commenti su action figures
         },
-        actionFigure: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "ActionFigure", // Riferimento al modello ActionFigure
-          required: false, // Per supportare anche i commenti su manga
-        },
       },
     ],
   },

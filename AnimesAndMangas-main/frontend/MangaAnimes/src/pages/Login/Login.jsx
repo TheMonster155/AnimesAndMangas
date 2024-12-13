@@ -11,7 +11,7 @@ const Login = ({ onLogin, handleCloseLogin }) => {
 
   // Controlla se l'utente è loggato al caricamento del componente
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("Authorization");
     if (token) {
       setIsLoggedIn(true);
     }
@@ -50,7 +50,7 @@ const Login = ({ onLogin, handleCloseLogin }) => {
       const data = await response.json();
 
       if (response.ok) {
-        localStorage.setItem("token", data.token);
+        localStorage.setItem("Authorization", data.token);
         setIsLoggedIn(true);
         setFormData({ email: "", password: "" }); // Resetta il form
         if (onLogin) onLogin(data);
@@ -65,7 +65,7 @@ const Login = ({ onLogin, handleCloseLogin }) => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
+    localStorage.removeItem("Authorization");
     setIsLoggedIn(false); // Segna l'utente come non loggato
     navigate("/", { replace: true });
   };

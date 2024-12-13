@@ -1,0 +1,60 @@
+.registerUser-up{
+    height: 250px;
+}
+
+.registerUser-down{
+    height: 250px;
+}
+
+/* Stile per il contenitore del form e delle condizioni */
+.container_registeruser {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  
+  /* Colonna per il form (left) */
+  .col-md-6 {
+    padding-right: 30px;
+  }
+  
+  /* Colonna per le condizioni d'uso (right) */
+  .conditions-container {
+    padding-left: 30px;
+    border-left: 2px solid #ccc;
+  }
+  
+  /* Stile per la sezione delle condizioni d'uso */
+  .conditions-container h5 {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
+  .conditions-container p {
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  .conditions-container a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .conditions-container a:hover {
+    text-decoration: underline;
+  }
+  
+  .input-group-text {
+    cursor: pointer;
+    padding: 0.5rem;
+    background-color: #1d1c1c;
+  }
+  .h2_registerUSer{
+    visibility: visible !important;
+    margin-top: 20px;
+    margin-bottom: 15px;
+   color: #1d1c1c;
+  }
+  .email_space{
+    margin-top: 30px;
+  }

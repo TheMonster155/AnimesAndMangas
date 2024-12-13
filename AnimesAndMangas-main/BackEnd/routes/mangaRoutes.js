@@ -2,11 +2,12 @@ const express = require("express");
 const Manga = require("../modules/manga");
 const validationErrorMiddleware = require("../middleware/validationErrorMiddleware");
 const cloud = require("./cloudinary");
-const Comment = require("../modules/comments");
+
 const manga = express.Router();
 const authenticateToken = require("../middleware/authenticateToken");
 const authorizeAdminOrSeller = require("../middleware/authorizeAdminOrSeller");
 const Seller = require("../modules/seller"); // Assicurati di importare Seller
+
 manga.post(
   "/manga/create",
   [authenticateToken, authorizeAdminOrSeller],
@@ -76,6 +77,23 @@ manga.get("/manga/titles", async (req, res, next) => {
     res.status(200).json(titles);
   } catch (err) {
     next(err);
+  }
+});
+
+manga.get("/manga/:type", async (req, res, next) => {
+  try {
+    const { type } = req.params; // Ottieni il tipo dalla richiesta (ad esempio "Figure")
+    const mangas = await Manga.find({ type: type }); // Filtra per tipo
+
+    if (mangas.length === 0) {
+      const error = new Error("No manga found for this type");
+      error.status = 404;
+      return next(error);
+    }
+
+    res.status(200).json(mangas); // Restituisce i manga trovati
+  } catch (err) {
+    next(err); // Gestisce gli errori
   }
 });
 

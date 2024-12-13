@@ -1,0 +1,52 @@
+/* ContactPage.css */
+.contact-up {
+  height: 200px;
+}
+
+/* ContactPage.css */
+.contact-down {
+  height: 200px;
+}
+
+.container_contact{
+  border: 2px solid #808080;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #333; /* Colore scuro per contrastare con il testo bianco */
+}
+
+
+
+.alert {
+  font-size: 14px;
+}
+
+.contact-text {
+  margin-bottom: 20px;
+  color: white;
+}
+
+button {
+  border-radius: 0;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+button:disabled {
+  background-color: #ccc;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 20px;
+  }
+}

@@ -68,11 +68,12 @@ const mangaGenres = [
 const mangaSchema = new mongoose.Schema(
   {
     name: { type: String, required: true, trim: true },
-    publisher: { type: String, required: true, trim: true },
-    author: { type: String, required: true, trim: true },
+    publisher: { type: String, required: false, trim: true },
+    author: { type: String, required: false, trim: true },
+    type: { type: String, require: false },
     category: {
       type: String,
-      required: true,
+      required: false,
       enum: mangaCategories,
       trim: true,
     },
@@ -80,15 +81,15 @@ const mangaSchema = new mongoose.Schema(
       {
         type: String,
         enum: mangaGenres,
-        required: true,
+        required: false,
         trim: true,
       },
     ],
-    language: { type: String, required: true, trim: true },
+    language: { type: String, required: false, trim: true },
     price: { type: Number, required: true },
     availability: { type: Number, default: 100 }, // default 100
-    releaseDate: { type: Date, required: true },
-    //file: [{ type: Object, required: false }], // URL di Cloudinary
+    releaseDate: { type: Date, required: false },
+
     file: { type: Object, required: false },
     description: { type: String, required: false, trim: true },
     comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment" }],

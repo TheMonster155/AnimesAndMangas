@@ -36,6 +36,7 @@ const cloudStorage = new CloudinaryStorage({
         "avi",
         "hevc",
         "3gp",
+        "webp",
       ], // Formati supportati
       resource_type: isVideo ? "video" : "image", // Tipo di risorsa (immagine o video)
       public_id: file.originalname.split(".")[0], // Nome pubblico del file (senza estensione)

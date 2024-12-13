@@ -10,7 +10,7 @@ const Dashboard = () => {
 
   // Se l'utente non è autenticato o non è admin o seller, reindirizza
   useEffect(() => {
-    const storedAuthData = JSON.parse(localStorage.getItem("authData"));
+    const storedAuthData = JSON.parse(localStorage.getItem("Authorization"));
 
     if (
       !storedAuthData ||

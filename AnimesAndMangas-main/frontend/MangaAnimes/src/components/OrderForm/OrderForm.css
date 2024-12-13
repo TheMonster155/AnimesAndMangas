@@ -112,52 +112,100 @@
   /* CSS per il form di pagamento */
 
 
-  .orderForm {
-    max-width: 600px;
+  /* Stili generali */
+
+  .orderFormBody {
+   
+    max-width: 40%;
+    max-height: 40%;
     margin: 0 auto;
     padding: 20px;
     background-color: #f9f9f9;
     border-radius: 8px;
   }
   
-  h2 {
-    text-align: center;
-    margin-bottom: 20px;
+  .cartItemImageWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin: 20 0 50 0;
   }
   
-  form div {
+  .cartItemImage {
+    max-width: 150px;
+    max-height: 150px;
+    height: auto;
+  }
+  
+  .cartItemDetails {
+    padding-left: 20px;
+  }
+  
+  .quantityWrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .quantityWrapper button {
+    width: 30px;
+    height: 30px;
+    margin: 0 5px;
+  }
+  
+  .cartItemDetails p {
+    margin: 5px 0;
+  }
+  
+  .cartTotal {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+  
+  .shippingForm h2 {
     margin-bottom: 15px;
   }
   
-  form label {
-    font-weight: bold;
+  .shippingForm input {
+    padding: 10px;
   }
   
-  form input {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+  .stripeWrapper {
+    margin-top: 20px;
   }
   
   button {
     width: 100%;
     padding: 10px;
-    background-color: #007bff;
-    border: none;
-    color: white;
     font-size: 16px;
-    cursor: pointer;
     border-radius: 4px;
-    margin-top: 20px;
   }
   
-  button:disabled {
-    background-color: #ccc;
+  @media (max-width: 768px) {
+    .orderFormBody {
+      padding: 15px;
+    }
+  
+    .cartItemDetails {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .cartItemImage {
+      max-width: 60px;
+      margin-bottom: 10px;
+    }
   }
   
-  .payment-form {
-    margin-top: 20px;
+  @media (max-width: 480px) {
+    h1 {
+      font-size: 24px;
+    }
+  
+    h2 {
+      font-size: 20px;
+    }
   }
   

@@ -17,6 +17,8 @@ import DetailsProducts from "./components/DetailsProducts/DetailsProducts";
 import DetailsActionFigure from "./components/DetailsActionFigure/DetailsActionFigure";
 import ActionFigureList from "./components/ActionFigureList/ActionFigureList";
 import MangaList from "./components/MangaList/MangaList";
+import ContactPage from "./pages/ContactPage/ContactPage";
+import SellerProductCards from "./components/SellerProductCards/SellerProductCards";
 const App = () => {
   return (
     <Routes>
@@ -32,12 +34,14 @@ const App = () => {
       <Route path="/success" element={<SuccessGoogle />} />
       <Route exact path="/" element={<HomePage2 />} />
       <Route path="/details/:productType/:_id" element={<DetailsProducts />} />
+      <Route path="/contact" element={<ContactPage />} />
       <Route
         path="/details/actionfigure/:_id"
         element={<DetailsActionFigure />}
       />
       <Route path="/ActionFigureList" element={<ActionFigureList />} />
-      <Route path="/MangaList" element={<MangaList />} />
+      <Route path="/MangaList/:type" element={<MangaList />} />
+      <Route path="/SellerProductCards" element={<SellerProductCards />} />
     </Routes>
   );
 };

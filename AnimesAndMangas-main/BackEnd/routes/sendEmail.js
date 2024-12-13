@@ -26,22 +26,35 @@ const sendEmail = async (msg, res, next, successMessage) => {
   }
 };
 
-email.post("/sendEmail", async (req, res, next) => {
-  const { email: userEmail, message } = req.body;
+email.post("/send", emailSuccessHandler, async (req, res, next) => {
+  const { from, subject, text, html } = req.body;
 
-  const msg = createEmailMessage(
-    userEmail,
-    "New Message from the Contact Form",
-    `Your message has been received:\n\n${message}\n\nWe will respond as soon as possible.`,
-    `
-      <p>Your message has been received.</p>
-      <p>Here's what you wrote:</p>
-      <p><strong>${message}</strong></p>
-      <p>We will respond as soon as possible.</p>
-    `
-  );
+  try {
+    const msg = {
+      to: process.env.SENDER_EMAIL,
+      from: process.env.SENDER_EMAIL,
+      "reply-to": from,
+      subject,
+      text,
+      html,
+    };
 
-  sendEmail(msg, res, next, "Email sent successfully.");
+    await sgMail.send(msg);
+
+    res.status(201).send({
+      statusCode: 201,
+      message: "Email sent successfully",
+      msg,
+    });
+  } catch (error) {
+    console.error("Error sending email:", error);
+
+    if (error.response) {
+      console.error("SendGrid error details:", error.response.body);
+    }
+
+    next(error);
+  }
 });
 
 email.post("/sendEmail/product", async (req, res, next) => {

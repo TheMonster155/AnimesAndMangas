@@ -10,8 +10,9 @@
     margin-bottom: 50px;
   }
   
-  .product-image {
-    width: 100%;
+  .product-image_details {
+    max-width: 800px;
+    max-height: 500px;
     margin-right: 50px;
   }
   

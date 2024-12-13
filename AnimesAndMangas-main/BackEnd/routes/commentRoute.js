@@ -193,10 +193,9 @@ module.exports = comments;
 const express = require("express");
 const Comment = require("../modules/comments");
 const Manga = require("../modules/manga");
-const ActionFigure = require("../modules/actionFigure");
+
 const authenticateToken = require("../middleware/authenticateToken");
 const dataUser = require("../modules/user");
-const Seller = require("../modules/seller");
 
 const comments = express.Router();
 
@@ -205,8 +204,7 @@ comments.get("/comments", async (req, res, next) => {
   try {
     const allReviews = await Comment.find()
       .populate("user")
-      .populate("productType.manga")
-      .populate("productType.actionFigure");
+      .populate("productType.manga");
 
     if (allReviews.length === 0) {
       return res.status(404).send({
@@ -225,25 +223,22 @@ comments.get("/comments", async (req, res, next) => {
   }
 });
 
-// GET: Recupera recensioni per un prodotto specifico (sia manga che action figures)
+// GET: Recupera recensioni per un prodotto specifico (solo manga)
 comments.get("/comments/product/:productId", async (req, res, next) => {
   const { productId } = req.params;
 
   try {
+    // Recupera recensioni per il manga specificato
     const reviewsForProduct = await Comment.find({
-      $or: [
-        { "productType.manga": productId }, // Se è un manga
-        { "productType.actionFigure": productId }, // Se è un'azione figure
-      ],
+      "productType.manga": productId,
     })
       .populate("user")
-      .populate("productType.manga")
-      .populate("productType.actionFigure");
+      .populate("productType.manga");
 
     if (reviewsForProduct.length === 0) {
       return res.status(404).send({
         statusCode: 404,
-        message: "No reviews found for this product",
+        message: "No reviews found for this manga",
       });
     }
 
@@ -278,18 +273,12 @@ comments.post("/comments/create", async (req, res, next) => {
       });
     }
 
-    // Trova il prodotto (Manga o ActionFigure)
-    let product;
-    product = await Manga.findById(productType); // Prima cerca tra i manga
-    if (!product) {
-      // Se non è un manga, cerca tra le action figures
-      product = await ActionFigure.findById(productType);
-    }
-
+    // Trova il prodotto (solo tra i manga)
+    const product = await Manga.findById(productType);
     if (!product) {
       return res.status(404).send({
         statusCode: 404,
-        message: "Product not found",
+        message: "Manga product not found",
       });
     }
 
@@ -299,14 +288,14 @@ comments.post("/comments/create", async (req, res, next) => {
       comment,
       user: userData._id,
       productType: {
-        [product.constructor.modelName.toLowerCase()]: product._id, // Usa il tipo di modello (Manga o ActionFigure)
+        manga: product._id, // Solo manga
       },
     });
 
     // Salva il commento
     await newComment.save();
 
-    // Aggiungi il commento al prodotto
+    // Aggiungi il commento al manga
     product.comments.push(newComment._id);
     await product.save();
 
@@ -324,7 +313,7 @@ comments.post("/comments/create", async (req, res, next) => {
   }
 });
 
-// DELETE: Elimina una recensione per prodotto
+// DELETE: Elimina una recensione per manga
 comments.delete("/comments/delete/:commentId", async (req, res, next) => {
   const { commentId } = req.params;
 
@@ -334,22 +323,19 @@ comments.delete("/comments/delete/:commentId", async (req, res, next) => {
     if (!commentToDelete) {
       return res.status(404).send({
         statusCode: 404,
-        message: "Review not found for this product",
+        message: "Review not found for this manga",
       });
     }
 
-    // Rimuovere il commento dai prodotti associati
-    const products = [
-      ...(await Manga.find({ comments: commentId })),
-      ...(await ActionFigure.find({ comments: commentId })),
-    ];
+    // Rimuovere il commento dal manga associato
+    const product = await Manga.findOne({ comments: commentId });
 
-    products.forEach(async (product) => {
+    if (product) {
       product.comments = product.comments.filter(
         (comment) => comment.toString() !== commentId
       );
       await product.save();
-    });
+    }
 
     res.status(200).send({
       statusCode: 200,

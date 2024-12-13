@@ -1,4 +1,4 @@
-/*.product-reviews {
+.product-reviews {
     margin: 20px 0;
     padding: 10px;
     border: 1px solid #ddd;
@@ -117,11 +117,13 @@
   .btn-primary:hover {
     background-color: #0056b3;
   }
-  */
+  
 
+
+  /*
   .product-comments {
     max-width: 300px;
-    margin: 50px auto 0; /* Aggiungi 50px di spazio sopra */
+    margin: 50px auto 0; 
   }
   
   .add-comment-form {
@@ -130,8 +132,8 @@
   }
   
   .comments-list {
-    max-height: 400px; /* Imposta un'altezza massima */
-    overflow-y: auto;  /* Abilita lo scroll verticale */
+    max-height: 400px; 
+    overflow-y: auto;  
   }
   
   
@@ -164,21 +166,21 @@
     background-color: #0056b3;
   }
   
-  /* Specifico per l'autore e il voto all'interno della lista dei commenti */
+
 .product-comments .comments-list .author,
 .product-comments .comments-list .rating {
-  background-color: rebeccapurple !important;  /* Colore di sfondo */
-  color: #6c757d !important;  /* Colore grigio del testo */
+  background-color: rebeccapurple !important; 
+  color: #6c757d !important;  
   padding: 5px;
   border-radius: 5px;
   margin-bottom: 5px;
-  font-weight: normal;  /* Evita il grassetto */
+  font-weight: normal;  
 }
 
 
   .add-comment-form .form-control,
   .add-comment-form .form-select {
-    background-color: #ffffff; /* Sfondo bianco per la form */
+    background-color: #ffffff; 
   }
   
   .add-button {
@@ -193,3 +195,94 @@
   .add-button:hover {
     background-color: #0056b3;
   }
+  */
+
+  /*
+  .product-comments_comment {
+    max-width: 350px;
+    margin: 50px auto 0;
+  }
+  
+  .add-comment-form_comment {
+    border-radius: 8px;
+    background-color: #f8f9fa;
+    padding: 20px;
+  }
+  
+  .comments-list_comment {
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 10px 0;
+  }
+  
+  .comments-list_comment .card_comment {
+    border: none;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .comments-list_comment .card_comment:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .textarea_comment {
+    resize: none;
+    width: 400px;
+    height: 200px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+  }
+  
+  .select_comment {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 5px;
+  }
+  
+  .alert_comment {
+    margin-top: 10px;
+  }
+  
+  .btn-primary_comment {
+    background-color: #007bff;
+    border: none;
+  }
+  
+  .btn-primary_comment:hover {
+    background-color: #0056b3;
+  }
+  
+  .product-comments_comment .comments-list_comment .author_comment,
+  .product-comments_comment .comments-list_comment .rating_comment {
+    background-color: rebeccapurple !important;
+    color: #6c757d !important;
+    padding: 5px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    font-weight: normal;
+  }
+  
+  .add-button_comment {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .add-button_comment:hover {
+    background-color: #0056b3;
+  }
+  */
+
+/* Contenitore dei commenti */
+
+/* Contenitore dei commenti */
+
+
+/* Contenitore dei commenti */
+
