@@ -2,139 +2,14 @@ const express = require("express");
 const stripe = require("stripe")(process.env.VITE_STRIPE_SECRET_KEY);
 const orderModel = require("../modules/orderSchema");
 const userModel = require("../modules/user");
-const actionFigureModel = require("../modules/actionFigure");
+
 const mangaModel = require("../modules/manga");
 
 const orders = express.Router();
-/*
-orders.post("/order/create-order", async (req, res, next) => {
-  const { userId, items, shippingAddress } = req.body;
-  console.log("Request body:", req.body); // Log input per debugging
-  try {
-    console.log("Shipping address:", shippingAddress);
-    const user = await userModel.findById(userId);
-    if (!user) {
-      const error = new Error("User not found.");
-      error.status = 404;
-      return next(error);
-    }
-
-    const { name, city, postalCode, country, address } = shippingAddress;
-    if (!name || !city || !postalCode || !country || !address) {
-      const error = new Error("Invalid shipping address.");
-      error.status = 400;
-      return next(error);
-    }
-
-    let totalPrice = 0;
-    for (const item of items) {
-      if (item.mangaId) {
-        const manga = await mangaModel.findById(item.mangaId);
-        if (!manga) {
-          const error = new Error(`Manga with ID ${item.mangaId} not found.`);
-          error.status = 404;
-          return next(error);
-        }
-        if (manga.availability < item.quantity) {
-          const error = new Error(
-            `Insufficient quantity available for manga ${manga.name}.`
-          );
-          error.status = 400;
-          return next(error);
-        }
-        totalPrice += item.quantity * item.price;
-      }
-
-      if (item.actionFigureId) {
-        const actionFigure = await actionFigureModel.findById(
-          item.actionFigureId
-        );
-        if (!actionFigure) {
-          const error = new Error(
-            `Action figure with ID ${item.actionFigureId} not found.`
-          );
-          error.status = 404;
-          return next(error);
-        }
-        if (actionFigure.availability < item.quantity) {
-          const error = new Error(
-            `Insufficient quantity available for action figure ${actionFigure.name}.`
-          );
-          error.status = 400;
-          return next(error);
-        }
-        totalPrice += item.quantity * item.price;
-      }
-    }
-
-    const paymentIntent = await stripe.paymentIntents.create({
-      amount: Math.round(totalPrice * 100),
-      currency: "eur",
-      //automatic_payment_methods: { enabled: true },
-      payment_method_types: ["card"],
-    });
-    console.log("Payment Intent:", paymentIntent); // Log payment intent per debugging
-
-    for (const item of items) {
-      if (item.mangaId) {
-        const manga = await mangaModel.findById(item.mangaId);
-        manga.availability -= item.quantity;
-        await manga.save();
-      }
-      if (item.actionFigureId) {
-        const actionFigure = await actionFigureModel.findById(
-          item.actionFigureId
-        );
-        actionFigure.availability -= item.quantity;
-        await actionFigure.save();
-      }
-    }
-
-    const newOrder = new orderModel({
-      userId,
-      items,
-      totalPrice,
-      shippingAddress,
-      status: "pending",
-      paymentId: paymentIntent.id,
-    });
-    const orderUser = await newOrder.save();
-    console.log("Nuovo ordine:", newOrder); // Log ordine creato
-
-    // push per dati
-    const updatedUser = await userModel.findByIdAndUpdate(
-      userId,
-      { $push: { orders: orderUser._id } },
-      { new: true }
-    );
-
-    if (!updatedUser) {
-      const error = new Error(
-        "User not found, but order was successfully created."
-      );
-      error.status = 404;
-      return next(error);
-    }
-
-    res.status(201).json({
-      message: "Order created successfully.",
-      order: newOrder,
-      paymentIntentId: paymentIntent.id,
-    });
-  } catch (error) {
-    if (error.type === "StripeCardError") {
-      error.status = 400;
-      return next(error);
-    }
-    console.error("Errore nel backend:", error); // Log errori
-
-    next(error);
-  }
-});*/
 
 orders.post("/order/create-order", async (req, res, next) => {
   const { userId, items, shippingAddress } = req.body;
-  console.log("Request body:", req.body); // Log input per debugging
+  console.log("Request body:", req.body);
   try {
     console.log("Shipping address:", shippingAddress);
     const user = await userModel.findById(userId);
@@ -198,9 +73,8 @@ orders.post("/order/create-order", async (req, res, next) => {
       payment_method_types: ["card"],
     });
 
-    console.log("PaymentIntent client_secret:", paymentIntent.client_secret); // Log del client_secret per il debug
+    console.log("PaymentIntent client_secret:", paymentIntent.client_secret);
 
-    // Salva gli articoli acquistati e aggiorna la disponibilitÃ  dei prodotti
     for (const item of items) {
       if (item.mangaId) {
         const manga = await mangaModel.findById(item.mangaId);
@@ -227,7 +101,6 @@ orders.post("/order/create-order", async (req, res, next) => {
     const orderUser = await newOrder.save();
     console.log("Nuovo ordine:", newOrder);
 
-    // Aggiungi l'ordine all'utente
     const updatedUser = await userModel.findByIdAndUpdate(
       userId,
       { $push: { orders: orderUser._id } },
@@ -242,11 +115,10 @@ orders.post("/order/create-order", async (req, res, next) => {
       return next(error);
     }
 
-    // Rispondi con il clientSecret
     res.status(201).json({
       message: "Order created successfully.",
       order: newOrder,
-      clientSecret: paymentIntent.client_secret, // Rispondi con il client_secret
+      clientSecret: paymentIntent.client_secret,
     });
   } catch (error) {
     if (error.type === "StripeCardError") {

@@ -1,4 +1,4 @@
-/* Posizionamento del prezzo al centro e dell'icona a destra */
+
 .d-flex {
     justify-content: center;
     align-items: center;
@@ -7,16 +7,15 @@
   .price {
     font-size: 16px;
     font-weight: bold;
-    margin-right: 50px; /* Margine a destra del prezzo */
+    margin-right: 50px; 
   }
   
-  /* Posizionamento dell'icona a destra con margine */
+ 
   .availability-icon {
     font-size: 50px;
    ;
   }
-  
-  /* Descrizione troncata */
+
   .manga-description p {
     font-size: 14px;
     color: #555;
