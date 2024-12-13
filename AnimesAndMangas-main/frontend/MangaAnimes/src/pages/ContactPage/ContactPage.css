@@ -1,9 +1,9 @@
-/* ContactPage.css */
+
 .contact-up {
   height: 200px;
 }
 
-/* ContactPage.css */
+
 .contact-down {
   height: 200px;
 }
@@ -12,7 +12,7 @@
   border: 2px solid #808080;
   padding: 20px;
   border-radius: 10px;
-  background-color: #333; /* Colore scuro per contrastare con il testo bianco */
+  background-color: #333; 
 }
 
 
@@ -44,7 +44,6 @@ button:disabled {
   background-color: #ccc;
 }
 
-/* Responsiveness */
 @media (max-width: 768px) {
   .container {
     padding: 0 20px;

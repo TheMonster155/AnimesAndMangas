@@ -1,4 +1,3 @@
-// src/middleware/PrivateRoute.jsx
 import HomePage from "../components/Homepage2/HomePage2";
 
 import { Outlet } from "react-router-dom";
