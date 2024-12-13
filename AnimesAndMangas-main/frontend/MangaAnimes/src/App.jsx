@@ -18,7 +18,8 @@ import DetailsActionFigure from "./components/DetailsActionFigure/DetailsActionF
 import ActionFigureList from "./components/ActionFigureList/ActionFigureList";
 import MangaList from "./components/MangaList/MangaList";
 import ContactPage from "./pages/ContactPage/ContactPage";
-import SellerProductCards from "./components/SellerProductCards/SellerProductCards";
+import MangaListPage from "./components/SellerProductCards/SellerProductCards";
+
 const App = () => {
   return (
     <Routes>
@@ -41,7 +42,7 @@ const App = () => {
       />
       <Route path="/ActionFigureList" element={<ActionFigureList />} />
       <Route path="/MangaList/:type" element={<MangaList />} />
-      <Route path="/SellerProductCards" element={<SellerProductCards />} />
+      <Route path="/sellerpage" element={<MangaListPage />} />
     </Routes>
   );
 };

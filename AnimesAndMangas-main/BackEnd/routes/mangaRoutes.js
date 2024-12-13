@@ -62,6 +62,74 @@ manga.post(
   }
 );
 
+manga.get("/products", async (req, res, next) => {
+  const { page = 1, pageSize = 8 } = req.query;
+  try {
+    const manga = await Manga.find()
+      .limit(pageSize)
+      .skip((page - 1) * pageSize);
+
+    const count = await Manga.countDocuments();
+    const totalPages = Math.ceil(count / pageSize);
+
+    if (!manga) {
+      return res.status(404).send({
+        statusCode: 404,
+        message: "Products not Found",
+      });
+    }
+
+    res.status(200).send({
+      statusCode: 200,
+      message: ` Products Found: ${manga.length}`,
+      count,
+      totalPages,
+      manga,
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
+manga.get("/manga/title/:name", async (req, res) => {
+  const { name } = req.params;
+
+  if (!name) {
+    return res.status(400).send({
+      statusCode: 400,
+      message: "Title is required",
+    });
+  }
+
+  try {
+    const manga = await Manga.find({
+      name: {
+        $regex: name, // Cerca il titolo parziale
+        $options: "i", // Case-insensitive
+      },
+    });
+
+    if (!manga || manga.length === 0) {
+      return res.status(404).send({
+        statusCode: 404,
+        message: "Title not found",
+      });
+    }
+
+    res.status(200).send({
+      statusCode: 200,
+      message: `Manga Found: ${manga.length}`,
+      manga, // Ritorna un array di prodotti corrispondenti
+    });
+  } catch (error) {
+    console.error("Error while searching manga:", error);
+    res.status(500).send({
+      statusCode: 500,
+      message: "Internal Server Error",
+    });
+  }
+});
+
 manga.get("/manga", async (req, res, next) => {
   try {
     const mangas = await Manga.find();
@@ -70,16 +138,6 @@ manga.get("/manga", async (req, res, next) => {
     next(err);
   }
 });
-
-manga.get("/manga/titles", async (req, res, next) => {
-  try {
-    const titles = await Manga.find().select("name -_id");
-    res.status(200).json(titles);
-  } catch (err) {
-    next(err);
-  }
-});
-
 manga.get("/manga/:type", async (req, res, next) => {
   try {
     const { type } = req.params; // Ottieni il tipo dalla richiesta (ad esempio "Figure")
@@ -94,6 +152,14 @@ manga.get("/manga/:type", async (req, res, next) => {
     res.status(200).json(mangas); // Restituisce i manga trovati
   } catch (err) {
     next(err); // Gestisce gli errori
+  }
+});
+manga.get("/manga/titles", async (req, res, next) => {
+  try {
+    const titles = await Manga.find().select("name -_id");
+    res.status(200).json(titles);
+  } catch (err) {
+    next(err);
   }
 });
 
