@@ -1,102 +1,31 @@
-/* Stile per il primo carousel */
-/*
-.carousel-small {
-    max-height: 300px;
-    overflow: hidden;
-    position: relative; 
-}
 
-
-.card-container {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-    margin-top: 20px; 
-}
-
-
-.card-custom {
-    width: 18rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-}
-
-
-.card-custom img {
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    width: 100%; 
-    height: auto;
-}
-
-
-.card-body-custom {
-    padding: 15px;
-}
-
-
-.footer-space {
-    height: 70px;
-}
-
-
-.carousel-indicators {
-    bottom: -40px; 
-    display: flex;
-    justify-content: center; 
-    gap: 10px; 
-}
-
-
-.carousel-indicators li {
-    width: 12px; 
-    height: 12px; 
-    border-radius: 50%; 
-   color: black;
-    border: none; /
-    transition: background-color 0.3s ease, transform 0.3s ease; 
-}
-
-
-.carousel-indicators .active {
-    background-color: transparent !important; 
-    border: 2px solid red !important; 
-    transform: scale(1.2); 
-}
-*/
-
-
-/* Correggi il contenitore del carosello per nascondere le card fuori dalla vista */
 .carousel {
     overflow: hidden;
     position: relative;
   }
-  
-  /* Gestisci l'altezza e la larghezza del carosello */
+
   .carousel-large {
-    width: 100%; /* Larghezza completa della pagina */
-    height: 500px; /* Altezza limitata */
-    overflow: hidden; /* Nascondi il contenuto che eccede */
+    width: 100%; 
+    height: 500px; 
+    overflow: hidden; 
     position: relative;
   }
   
 
   .carousel-text {
-    color: white; /* Colore del testo */
-    font-size: 2rem; /* Dimensione del testo */
+    color: white; 
+    font-size: 2rem; 
     font-weight: bold;
-    z-index: 2; /* Assicura che il testo sia sopra l'immagine */
-    padding: 10px; /* Aggiungi un po' di spazio attorno al testo */
-    transition: opacity 0.3s ease; /* Transizione per la visibilità */
+    z-index: 2; 
+    padding: 10px; 
+    transition: opacity 0.3s ease; 
   }
   
-  /* Rimuovi l'opacità sulle prime e terze slide */
+
   .carousel-text.opacity-100 {
     opacity: 1;
   }
-  
-  /* Centrare il testo */
+
   .carousel-text.text-center {
     text-align: center;
   }
@@ -104,13 +33,13 @@
   .carousel-text.text-start {
     text-align: left;
   }
-  
-  /* Posizione assoluta */
+
+
   .carousel-text.position-absolute {
     position: absolute;
   }
   
-  /* Posizione centrata orizzontalmente e verticalmente */
+ 
   .carousel-text.top-50 {
     top: 50%;
     transform: translateY(-50%);
@@ -121,7 +50,7 @@
     transform: translateX(-50%);
   }
   
-  /* Posizione in alto a sinistra per la seconda slide */
+
   .carousel-text.top-0 {
     top: 0;
   }
@@ -134,15 +63,15 @@
     left: 0;
   }
   .carousel-large img {
-    width: 100%; /* Adatta le immagini alla larghezza del contenitore */
-    height: 100%; /* Adatta le immagini all'altezza del contenitore */
-    object-fit: cover; /* Mantieni proporzioni e ritaglia l'immagine */
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
   }
   
-  /* Stile per il carosello di dimensione media */
+
   .carousel-medium {
     max-height: 600px;
-    max-width: 100%; /* O la dimensione che preferisci */
+    max-width: 100%; 
     margin: 0 auto;
   }
   
@@ -152,90 +81,8 @@
     overflow: hidden;
     position: relative;
   }
-  /*
-
-  .card-container {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-    margin-top: 20px;
-  }
-  
- 
-  .card-custom {
-    width: 20rem;
-    height: 30rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    margin-bottom: 20px; 
-    position: relative;
-  }
-  
-  .card-custom img {
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    width: 100%;
-    height: 330px;
-    object-fit: cover; 
-    transition: transform 0.3s ease; 
-  }
   
 
-  .card-custom:hover {
-    transform: translateY(-5px); 
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-  }
-  
-  
-  .card-body-custom {
-    padding: 15px;
-    background-color: #f8f9fa;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-  }
-  
- 
-  .card-body-custom h5 {
-    font-size: 1.1rem;
-    font-weight: 500;
-    margin-bottom: 10px;
-  }
-  
-
-  .card-custom:hover img {
-    transform: scale(1.05);
-  }
-  
-  
-  .card-body-custom .price-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-  }
-  
- 
-  .card-body-custom .btn {
-    background-color: #007bff;
-    border-color: #007bff;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-    padding: 10px 20px; 
-    font-size: 14px;
-    border-radius: 50px; 
-  }
-  
-  .card-body-custom .btn:hover {
-    background-color: #0056b3;
-    border-color: #004085;
-    transform: scale(1.05); 
-  }
-  */
- 
   .footer-space {
     height: 70px;
   }
@@ -257,86 +104,86 @@
     transition: background-color 0.3s ease, transform 0.3s ease;
   }
   
-  /* Cerchio attivo nel carosello */
+ 
   .carousel-indicators .active {
     background-color: #007bff !important;
     transform: scale(1.3);
   }
   
-  /* Stile per il carosello con una transizione più fluida */
+
   .carousel-item {
     transition: transform 1s ease;
   }
   .custom-button {
-    padding: 8px 16px; /* Dimensioni più piccole */
-    background-color: #ff6347; /* Colore di sfondo arancione rosato */
-    color: #fff; /* Testo bianco */
-    border: 2px solid #ff6347; /* Bordo arancione rosato */
-    border-radius: 30px; /* Bordo arrotondato */
-    font-size: 14px; /* Dimensione del testo più piccola */
+    padding: 8px 16px; 
+    background-color: #ff6347; 
+    color: #fff;
+    border: 2px solid #ff6347; 
+    border-radius: 30px; 
+    font-size: 14px; 
     font-weight: bold;
-    text-transform: uppercase; /* Testo in maiuscolo */
+    text-transform: uppercase; 
     cursor: pointer;
     transition: background-color 0.3s ease, border-color 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombra leggera più delicata */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
   }
   
   .custom-button:hover {
-    background-color: #ff4500; /* Colore di sfondo arancione più scuro */
-    border-color: #ff4500; /* Bordo arancione più scuro */
+    background-color: #ff4500; 
+    border-color: #ff4500; 
   }
   
   .custom-button:focus {
-    outline: none; /* Rimuove il bordo di focus */
+    outline: none; 
   }
   
   .product-name {
-    white-space: nowrap; /* Impedisce che il testo vada su più righe */
-    overflow: hidden; /* Nasconde il testo in eccesso */
-    text-overflow: ellipsis; /* Mostra i puntini di sospensione */
-    display: block; /* Assicura che il comportamento funzioni correttamente */
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    display: block; 
   }
   
   
   
-  /* Responsività per schermi piccoli (ad esempio col-sm) */
+  
   @media (max-width: 576px) {
     .carousel-item .card-custom {
-      width: 100%; /* Una card per slide */
-      margin: 0 0; /* Rimuovi margini laterali */
+      width: 100%; 
+      margin: 0 0; 
     }
   }
   
-  /* Responsività per schermi più grandi, ad esempio su tablet */
+  
   @media (max-width: 768px) {
     .card-custom {
-      width: 50%; /* Mostra due card per slide */
-      margin: 0 5px; /* Distanza tra le card */
+      width: 50%; 
+      margin: 0 5px; 
     }
     .carousel-small {
       max-height: 250px;
     }
   
-    /* Riduce la dimensione della card quando la larghezza dello schermo è piccola */
+  
     .card-body-custom h5 {
       font-size: 1rem;
     }
   
     .carousel-medium {
-      max-width: 95%; /* Adatta il carosello alla larghezza dello schermo */
+      max-width: 95%; 
     }
   }
   
-  /* Ottimizzazione per schermi molto piccoli (es. dispositivi mobili) */
+
   @media (max-width: 480px) {
     .card-custom {
-      width: 14rem; /* Diminuisce ulteriormente la larghezza */
+      width: 14rem; 
     }
     .carousel-small {
-      max-height: 200px; /* Riduce l'altezza del carosello su schermi molto piccoli */
+      max-height: 200px; 
     }
     .carousel-indicators {
-      bottom: -30px; /* Aumenta lo spazio tra i cerchi e il carosello */
+      bottom: -30px; 
     }
   }
   

@@ -21,4 +21,3 @@ const cloudStorage = new CloudinaryStorage({
 const cloud = multer({ storage: cloudStorage });
 
 module.exports = cloud;
-//TODO: cambiare tutte gli avvisi da ita in eng e togiere

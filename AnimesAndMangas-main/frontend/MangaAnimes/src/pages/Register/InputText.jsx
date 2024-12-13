@@ -1,4 +1,3 @@
-// src/components/InputText.jsx
 import React from "react";
 
 const InputText = ({

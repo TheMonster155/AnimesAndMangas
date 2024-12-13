@@ -37,7 +37,6 @@ const NavbarComponent = () => {
   };
 
   const handleLogin = (user) => {
-    console.log("Utente loggato:", user);
     setShowLoginModal(false);
   };
 
@@ -65,7 +64,6 @@ const NavbarComponent = () => {
       );
       const data = await response.json();
       if (response.ok) {
-        console.log(data);
       } else {
         console.error("Errore nella ricerca:", data.message);
       }

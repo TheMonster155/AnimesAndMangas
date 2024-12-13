@@ -6,25 +6,25 @@
     height: 250px;
 }
 
-/* Stile per il contenitore del form e delle condizioni */
+
 .container_registeruser {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
   }
   
-  /* Colonna per il form (left) */
+
   .col-md-6 {
     padding-right: 30px;
   }
   
-  /* Colonna per le condizioni d'uso (right) */
+
   .conditions-container {
     padding-left: 30px;
     border-left: 2px solid #ccc;
   }
   
-  /* Stile per la sezione delle condizioni d'uso */
+
   .conditions-container h5 {
     font-size: 1.2rem;
     font-weight: bold;

@@ -30,8 +30,6 @@ const SellerRegistration = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log("Form data:", formData); // Log dei dati nel form
-
     const requiredFields = [
       "email",
       "password",
@@ -47,10 +45,8 @@ const SellerRegistration = () => {
       "birthYear",
     ];
 
-    // Controlla se tutti i campi richiesti sono compilati
     for (const field of requiredFields) {
       if (!formData[field]) {
-        console.log(`Campo obbligatorio mancante: ${field}`); // Log del campo mancante
         setMessage({
           type: "error",
           text: "Tutti i campi obbligatori devono essere compilati.",
@@ -59,15 +55,12 @@ const SellerRegistration = () => {
       }
     }
 
-    // Validazioni
     if (!validateEmail(formData.email)) {
-      console.log("Email non valida:", formData.email); // Log dell'email non valida
       setMessage({ type: "error", text: "Email non valida." });
       return;
     }
 
     if (!validatePassword(formData.password)) {
-      console.log("Password non valida:", formData.password); // Log della password non valida
       setMessage({
         type: "error",
         text: "La password deve contenere almeno 8 caratteri, una lettera maiuscola, un numero e un carattere speciale.",
@@ -75,19 +68,15 @@ const SellerRegistration = () => {
       return;
     }
 
-    // Verifica che la data di nascita sia valida
     const birthYear = new Date(formData.birthYear);
-    console.log("Data di nascita:", birthYear); // Log della data di nascita
 
     if (isNaN(birthYear)) {
-      console.log("Data di nascita non valida."); // Log di data non valida
       setMessage({ type: "error", text: "La data di nascita non è valida." });
       return;
     }
 
     const today = new Date();
     if (birthYear > today) {
-      console.log("Data di nascita nel futuro."); // Log se la data di nascita è nel futuro
       setMessage({
         type: "error",
         text: "La data di nascita non può essere nel futuro.",
@@ -96,9 +85,8 @@ const SellerRegistration = () => {
     }
 
     const minAgeDate = new Date();
-    minAgeDate.setFullYear(minAgeDate.getFullYear() - 18); // Età minima 18 anni
+    minAgeDate.setFullYear(minAgeDate.getFullYear() - 18);
     if (birthYear > minAgeDate) {
-      console.log("Utente troppo giovane per registrarsi."); // Log se l'utente ha meno di 18 anni
       setMessage({
         type: "error",
         text: "Devi avere almeno 18 anni per registrarti.",
@@ -106,42 +94,39 @@ const SellerRegistration = () => {
       return;
     }
 
-    // Prepara i dati per l'invio
     const preparedData = {
       ...formData,
       birthYear: birthYear.toISOString(),
     };
-    console.log("Dati pronti per l'invio:", preparedData); // Log dei dati pronti per l'invio
 
-    // Invio dei dati al server
     try {
-      const response = await fetch("http://localhost:3050/seller/create", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(preparedData),
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_SERVER_BASE_URL}/seller/create`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(preparedData),
+        }
+      );
 
       const data = await response.json();
-      console.log("Risposta del server:", data); // Log della risposta del server
 
       if (response.ok) {
         setMessage({
           type: "success",
           text: "Registrazione completata con successo!",
         });
-        resetForm(); // Resetta tutti i campi
-        navigate("/"); // Reindirizza alla home
+        resetForm();
+        navigate("/");
       } else {
-        console.log("Errore nella risposta del server:", data.error); // Log se c'è un errore nel server
         setMessage({
           type: "error",
           text: data.error || "Errore nella registrazione.",
         });
       }
     } catch (err) {
-      console.log("Errore nella connessione al server:", err); // Log di eventuali errori di connessione
       setMessage({
         type: "error",
         text: "Errore nella connessione al server.",

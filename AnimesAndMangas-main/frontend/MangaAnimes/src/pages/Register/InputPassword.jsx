@@ -1,4 +1,3 @@
-// src/components/InputPassword.jsx
 import React from "react";
 
 const InputPassword = ({

@@ -14,9 +14,6 @@ manga.post(
   cloud.single("file"),
   async (req, res, next) => {
     try {
-      console.log("req.body:", req.body);
-      console.log("User ID in request:", req.user.userId);
-
       req.body.seller = req.user.userId;
 
       if (req.file) {
@@ -44,8 +41,6 @@ manga.post(
         },
         { new: true }
       ); // { new: true } per restituire il documento aggiornato
-
-      console.log("Updated Seller:", updatedSeller);
 
       // Rispondi con successo
       res.status(201).json({

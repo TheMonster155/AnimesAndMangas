@@ -9,9 +9,8 @@ const orders = express.Router();
 
 orders.post("/order/create-order", async (req, res, next) => {
   const { userId, items, shippingAddress } = req.body;
-  console.log("Request body:", req.body);
+
   try {
-    console.log("Shipping address:", shippingAddress);
     const user = await userModel.findById(userId);
     if (!user) {
       const error = new Error("User not found.");
@@ -73,8 +72,6 @@ orders.post("/order/create-order", async (req, res, next) => {
       payment_method_types: ["card"],
     });
 
-    console.log("PaymentIntent client_secret:", paymentIntent.client_secret);
-
     for (const item of items) {
       if (item.mangaId) {
         const manga = await mangaModel.findById(item.mangaId);
@@ -99,7 +96,6 @@ orders.post("/order/create-order", async (req, res, next) => {
       paymentId: paymentIntent.id,
     });
     const orderUser = await newOrder.save();
-    console.log("Nuovo ordine:", newOrder);
 
     const updatedUser = await userModel.findByIdAndUpdate(
       userId,

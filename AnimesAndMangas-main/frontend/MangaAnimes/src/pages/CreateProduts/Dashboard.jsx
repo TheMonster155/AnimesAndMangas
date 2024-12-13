@@ -8,7 +8,6 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const [userInfo, setUserInfo] = useState(null);
 
-  // Se l'utente non è autenticato o non è admin o seller, reindirizza
   useEffect(() => {
     const storedAuthData = JSON.parse(localStorage.getItem("Authorization"));
 
@@ -16,7 +15,7 @@ const Dashboard = () => {
       !storedAuthData ||
       (storedAuthData.role !== "admin" && storedAuthData.role !== "seller")
     ) {
-      navigate("/"); // Reindirizza alla home o alla pagina di login
+      navigate("/");
     } else {
       setUserInfo(storedAuthData);
     }

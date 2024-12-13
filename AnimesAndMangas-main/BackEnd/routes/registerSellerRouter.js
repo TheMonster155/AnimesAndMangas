@@ -7,7 +7,6 @@ const mongoose = require("mongoose");
 const seller = express.Router();
 
 seller.post("/seller/create", validateSeller, async (req, res, next) => {
-  console.log("Request body:", req.body);
   try {
     const {
       email,
@@ -103,7 +102,6 @@ seller.post("/seller/create", validateSeller, async (req, res, next) => {
       manga: mangaId ? { _id: mangaId } : null,
     });
   } catch (err) {
-    console.log("Error occurred:", err);
     next(err);
   }
 });

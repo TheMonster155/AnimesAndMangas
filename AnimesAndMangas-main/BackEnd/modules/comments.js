@@ -15,24 +15,24 @@ const commentSchema = new mongoose.Schema(
     },
     user: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User", // Riferimento al modello degli utenti
+      ref: "User",
       required: false,
     },
     seller: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Seller", // Riferimento al modello dei venditori
-      required: false, // Cambiato a opzionale
+      ref: "Seller",
+      required: false,
     },
     admin: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User", // Riferimento al modello degli utenti con ruolo admin
+      ref: "User",
     },
     productType: [
       {
         manga: {
           type: mongoose.Schema.Types.ObjectId,
-          ref: "Manga", // Riferimento al modello Manga
-          required: false, // Per supportare anche i commenti su action figures
+          ref: "Manga",
+          required: false,
         },
       },
     ],

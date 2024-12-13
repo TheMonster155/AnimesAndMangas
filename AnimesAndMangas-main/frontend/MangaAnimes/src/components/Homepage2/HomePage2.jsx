@@ -7,9 +7,9 @@ const HomePage2 = () => {
   return (
     <>
       <NavbarComponent />
-      <div className="space-up" /> {/* Aggiungi un div per lo spazio */}
+      <div className="space-up" />
       <HomePage />
-      <div className="space-between" /> {/* Aggiungi un div per lo spazio */}
+      <div className="space-between" />
       <Footer />
     </>
   );

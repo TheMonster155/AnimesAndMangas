@@ -6,13 +6,11 @@ function Footer() {
     <footer className="bg-secondary text-light py-4 w-100 mb-0">
       <Container fluid>
         <Row>
-          {/* Colonna 1: Logo */}
           <Col className="col-12 col-md-3 mb-3">
             <h5 className="fw-bold">LOGO</h5>
             <p>Inserisci qui il tuo logo.</p>
           </Col>
 
-          {/* Colonna 2: Prodotti */}
           <Col className="col-12 col-md-3 mb-3">
             <h5 className="fw-bold">Prodotti</h5>
             <ul className="list-unstyled">
@@ -29,7 +27,6 @@ function Footer() {
             </ul>
           </Col>
 
-          {/* Colonna 3: Informazioni */}
           <Col className="col-12 col-md-3 mb-3">
             <h5 className="fw-bold">Informazioni</h5>
             <ul className="list-unstyled">
@@ -77,7 +74,6 @@ function Footer() {
             </ul>
           </Col>
 
-          {/* Colonna 4: Il tuo Account */}
           <Col className="col-12 col-md-3 mb-3">
             <h5 className="fw-bold">Il tuo Account</h5>
             <ul className="list-unstyled">

@@ -41,27 +41,24 @@ passport.use(
         if (!user) {
           const { _json: profileData } = profile;
 
-          // Imposta birthYear come l'anno corrente se non presente nel profilo Google
           const birthYear = profileData.birthYear || new Date().getFullYear();
 
-          const tempPassword = "123456789"; // Password predefinita
-
+          const tempPassword = "123456789";
           const userToSave = new UserModel({
             name: profileData.given_name,
             surname: profileData.family_name,
             email: profileData.email,
-            birthYear: birthYear, // Usa birthYear o l'anno corrente
-            password: tempPassword, // Password predefinita
+            birthYear: birthYear,
+            password: tempPassword,
             username: `${profileData.given_name}_${profileData.family_name}`,
           });
 
-          user = await userToSave.save(); // Salva il nuovo utente
+          user = await userToSave.save();
         }
 
-        done(null, user); // Completa l'autenticazione
+        done(null, user);
       } catch (error) {
-        console.log(error);
-        done(error, null); // Gestione degli errori
+        done(error, null);
       }
     }
   )
@@ -97,12 +94,10 @@ google.get(
 google.get("/logout", (req, res) => {
   req.logout((err) => {
     if (err) {
-      console.log("Error logging out:", err);
       return res.redirect("/");
     }
     req.session.destroy((err) => {
       if (err) {
-        console.log("Errore durante la distruzione della sessione:", err);
         return res.redirect("/");
       }
       res.clearCookie("connect.sid");
