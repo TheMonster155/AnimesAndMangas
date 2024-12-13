@@ -190,3 +190,18 @@ I contributi sono benvenuti! Segui le linee guida nel file CONTRIBUTING.md per i
 Licenza
 
 Questo progetto è distribuito sotto licenza MIT.
+
+DB_URI=""
+DEBUG_MODE
+JWT_SECRET=""
+
+FRONTEND_URL=""
+CLOUDINARY_CLOUD_NAME=""
+CLOUDINARY_API_KEY=""
+CLOUDINARY_API_SECRET=""
+VITE_STRIPE_SECRET_KEY= ""
+SENDGRID_API_KEY =""
+SENDER_EMAIL=""
+GOOGLE_CLIENT_ID=""
+GOOGLE_CLIENT_SECRET=""
+GOOGLE_CALLBACK_URL=""
