@@ -8,11 +8,10 @@ import mangasReducer from "./reduces/mangaReduces.js";
 import reviewsReducer from "./reduces/commentsRedux.js";
 import { BrowserRouter } from "react-router-dom";
 import { CartContextProvider } from "./components/Context/CartContext.jsx";
-import actionFigureReducer from "./reduces/actionFigureRedux.js";
+
 const reducer = combineReducers({
   mangas: mangasReducer,
   reviewsSlice: reviewsReducer,
-  actionFigures: actionFigureReducer,
 });
 
 const store = configureStore({ reducer });
