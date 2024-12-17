@@ -1,61 +1,52 @@
 const express = require("express");
 const Manga = require("../modules/manga");
-const validationErrorMiddleware = require("../middleware/validationErrorMiddleware");
+
 const cloud = require("./cloudinary");
 
 const manga = express.Router();
-const authenticateToken = require("../middleware/authenticateToken");
-const authorizeAdminOrSeller = require("../middleware/authorizeAdminOrSeller");
-const Seller = require("../modules/seller"); // Assicurati di importare Seller
 
-manga.post(
-  "/manga/create",
-  [authenticateToken, authorizeAdminOrSeller],
-  cloud.single("file"),
-  async (req, res, next) => {
-    try {
-      req.body.seller = req.user.userId;
+const Seller = require("../modules/seller");
 
-      if (req.file) {
-        req.body.file = {
-          url: req.file.path,
-          public_id: req.file.filename,
-        };
-      }
+manga.post("/manga/create", cloud.single("file"), async (req, res, next) => {
+  try {
+    if (req.file) {
+      req.body.file = {
+        url: req.file.path,
+        public_id: req.file.filename,
+      };
+    }
 
-      // Crea il manga
-      const manga = new Manga(req.body);
-      await manga.save();
+    const manga = new Manga(req.body);
+    await manga.save();
 
-      // Verifica che il venditore esista prima di aggiornarlo
+    if (req.user && req.user.role === "seller") {
       const seller = await Seller.findById(req.user.userId);
       if (!seller) {
         return res.status(404).json({ error: "Seller not found" });
       }
 
-      // Aggiungi il manga al campo 'createdManga' del venditore
-      const updatedSeller = await Seller.findByIdAndUpdate(
-        req.user.userId,
-        {
-          $push: { createdManga: manga._id }, // Aggiungi l'ID del manga
-        },
-        { new: true }
-      ); // { new: true } per restituire il documento aggiornato
-
-      // Rispondi con successo
-      res.status(201).json({
-        message: "File uploaded and manga created successfully",
-        file: req.body.file,
-        manga: manga,
-      });
-    } catch (err) {
-      if (err.name === "ValidationError") {
-        err.type = "validation";
-      }
-      next(err);
+      seller.createdManga.push(manga._id);
+      await seller.save();
     }
+
+    return res.status(201).json({
+      message: "Manga created successfully",
+      manga,
+      file: req.body.file || null,
+    });
+  } catch (err) {
+    console.error("Error creating manga:", err);
+
+    if (err.name === "ValidationError") {
+      return res.status(400).json({
+        error: "Validation failed",
+        details: err.errors,
+      });
+    }
+
+    next(err);
   }
-);
+});
 
 manga.get("/products", async (req, res, next) => {
   const { page = 1, pageSize = 8 } = req.query;

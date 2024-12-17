@@ -223,8 +223,13 @@ const MangaList = () => {
                       <div className="card-body-custom">
                         <h5 className="card-title">{manga.name}</h5>
                         <div className="price-container">
-                          <p className="card-text fs-2">€ {manga.price}</p>
+                          <p className="card-text ">€ {manga.price}</p>
                         </div>
+                        <p>
+                          {manga.description.length > 100
+                            ? manga.description.substring(0, 100) + "..."
+                            : manga.description}
+                        </p>
                       </div>
                     </div>
                   </div>

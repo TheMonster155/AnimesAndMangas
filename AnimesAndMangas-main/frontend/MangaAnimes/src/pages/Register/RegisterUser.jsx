@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import InputField from "./InputField";
 import Message from "./Message";
 import useFormData from "./useFormData";
@@ -116,13 +116,12 @@ const UserRegistration = () => {
                 className="mb-5"
               />
               <div className="input-group mb-3">
-                {" "}
                 <span
                   className="input-group-text  email_space"
                   style={{ cursor: "pointer" }}
                   onClick={togglePasswordVisibility}
                 >
-                  {showPassword ? "🙈" : "👁️"}{" "}
+                  {showPassword ? "🙈" : "👁️"}
                 </span>
                 <InputField
                   label="Password"
@@ -160,6 +159,15 @@ const UserRegistration = () => {
                 Registrati
               </button>
             </form>
+          </div>
+
+          <div className="text-center mt-4">
+            <p>
+              Vuoi vendere i tuoi prodotti?{" "}
+              <Link to="/registationSeller" className="text-primary">
+                Clicca qui per registrarti come venditore
+              </Link>
+            </p>
           </div>
 
           <div className="col-md-5 conditions-container">

@@ -5,8 +5,8 @@ import {
   FaTachometerAlt,
   FaSearch,
 } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
-import { Modal } from "react-bootstrap";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Modal, Button } from "react-bootstrap";
 import Login from "../../pages/Login/Login";
 import "./Navbar.css";
 
@@ -14,11 +14,10 @@ const NavbarComponent = () => {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [dashboardVisible, setDashboardVisible] = useState(false);
   const [searchVisible, setSearchVisible] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
 
   const dashboardRef = useRef(null);
   const navigate = useNavigate();
-
+  const location = useLocation();
   const handleClickOutside = (event) => {
     if (dashboardRef.current && !dashboardRef.current.contains(event.target)) {
       setDashboardVisible(false);
@@ -55,6 +54,9 @@ const NavbarComponent = () => {
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
   };
+  const handleNavigate = () => {
+    navigate("/dashboard");
+  };
 
   const fetchProductsByQuery = async (query) => {
     if (query.trim() === "") return;
@@ -76,7 +78,11 @@ const NavbarComponent = () => {
     <nav className="navbar navbar-expand-lg navbar-light bg-white shadow fixed-top">
       <div className="container">
         <Link to="/" className="navbar-brand d-flex align-items-center">
-          <img src="/path/to/your/logo.png" alt="Logo" className="logo-img" />
+          <img
+            src="https://res-console.cloudinary.com/dzdxelv4m/thumbnails/v1/image/upload/v1734462695/YmdfZjhmOGY4LWZsYXRfNzUweF8wNzVfZi1wYWRfNzUweDEwMDBfZjhmOGY4X29tdWY1eA==/drilldown"
+            alt="Logo"
+            className="logo-img"
+          />
         </Link>
 
         <div className="navbar-nav mx-auto d-flex justify-content-center">
@@ -97,32 +103,10 @@ const NavbarComponent = () => {
                 Figure
               </button>
             </li>
-            <li className="nav-item">
-              <Link to="/mangacreate" className="nav-link">
-                Create
-              </Link>
-            </li>
           </ul>
         </div>
 
         <div className="d-flex align-items-center ms-auto gap-3 navbar-icons">
-          <button
-            onClick={handleSearchToggle}
-            className="btn btn-link p-0 d-flex align-items-center text-black"
-          >
-            <FaSearch size={24} />
-          </button>
-
-          {searchVisible && (
-            <input
-              type="text"
-              className="search-input"
-              placeholder="Cerca..."
-              value={searchQuery}
-              onChange={handleSearchChange}
-            />
-          )}
-
           <button
             onClick={toggleLoginModal}
             className="btn btn-link p-0 d-flex align-items-center text-black"
@@ -149,9 +133,13 @@ const NavbarComponent = () => {
               <Link to="/registationUser" className="nav-link">
                 Registrazione
               </Link>
-              <Link to="/sellerpage" className="nav-link">
+              <Button
+                variant="link"
+                className="nav-link"
+                onClick={handleNavigate}
+              >
                 Venditori
-              </Link>
+              </Button>
               <Link to="/contact" className="nav-link">
                 Contatti
               </Link>

@@ -63,19 +63,32 @@ export const createManga = createAsyncThunk(
   "mangas/createManga",
   async (mangaData, thunkAPI) => {
     try {
+      const formData = new FormData();
+
+      for (let key in mangaData) {
+        if (Array.isArray(mangaData[key])) {
+          mangaData[key].forEach((value) => formData.append(key, value));
+        } else {
+          formData.append(key, mangaData[key]);
+        }
+      }
+
+      for (let pair of formData.entries()) {
+      }
+
       const response = await fetch(
         `${import.meta.env.VITE_SERVER_BASE_URL}/manga/create`,
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(mangaData),
+          body: formData,
         }
       );
+
       if (!response.ok) {
-        throw new Error("Errore nella creazione del manga");
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Errore nella creazione del manga");
       }
+
       const data = await response.json();
       return data;
     } catch (error) {

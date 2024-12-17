@@ -1,27 +1,30 @@
-
 .d-flex {
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .price {
-    font-size: 16px;
-    font-weight: bold;
-    margin-right: 50px; 
-  }
-  
- 
-  .availability-icon {
-    font-size: 50px;
-   ;
-  }
+  justify-content: center;
+  align-items: center;
+}
 
-  .manga-description p {
-    font-size: 14px;
-    color: #555;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    margin-top: 10px;
+.price {
+  font-size: 16px;
+  font-weight: bold;
+  margin-right: 50px;
+}
+
+.availability-icon {
+  font-size: 50px;
+}
+
+.manga-description p {
+  font-size: 14px;
+  color: #555;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-top: 90px;
+}
+
+
+@media (max-width: 768px) {
+  .card-custom {
+    margin-bottom: 50px; 
   }
-  
+}

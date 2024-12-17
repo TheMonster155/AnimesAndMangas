@@ -1,14 +1,17 @@
 import { Container, Row, Col } from "react-bootstrap";
 import React from "react";
-
+import "./Footer.css";
 function Footer() {
   return (
     <footer className="bg-secondary text-light py-4 w-100 mb-0">
       <Container fluid>
         <Row>
           <Col className="col-12 col-md-3 mb-3">
-            <h5 className="fw-bold">LOGO</h5>
-            <p>Inserisci qui il tuo logo.</p>
+            <img
+              src="https://res-console.cloudinary.com/dzdxelv4m/thumbnails/v1/image/upload/v1734462695/YmdfZjhmOGY4LWZsYXRfNzUweF8wNzVfZi1wYWRfNzUweDEwMDBfZjhmOGY4X29tdWY1eA==/drilldown"
+              alt="Logo"
+              className="footer-logo-img"
+            />
           </Col>
 
           <Col className="col-12 col-md-3 mb-3">
@@ -34,6 +37,11 @@ function Footer() {
                 <a href="#termini" className="text-light text-decoration-none">
                   Termini e Condizioni
                 </a>
+                <p>
+                  Alcune immagini utilizzate in questo sito potrebbero essere
+                  protette da copyright e sono utilizzate solo a scopo didattico
+                  e non commerciale.
+                </p>
               </li>
               <li>
                 <a href="#docente" className="text-light text-decoration-none">

@@ -1,7 +1,7 @@
 import Footer from "../Footer/Footer";
 import HomePage from "../Main/homepage";
 import NavbarComponent from "../Navbar/Navbar";
-import "./HomePage2.css"; // Importa il file CSS
+import "./HomePage2.css";
 
 const HomePage2 = () => {
   return (

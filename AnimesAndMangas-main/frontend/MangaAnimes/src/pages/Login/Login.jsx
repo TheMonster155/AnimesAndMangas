@@ -12,6 +12,7 @@ const Login = ({ onLogin, handleCloseLogin }) => {
 
   useEffect(() => {
     const token = localStorage.getItem("Authorization");
+
     if (token) {
       setIsLoggedIn(true);
 
@@ -34,6 +35,7 @@ const Login = ({ onLogin, handleCloseLogin }) => {
       setErrorMessage("Email e password sono obbligatori.");
       return false;
     }
+
     return true;
   };
 

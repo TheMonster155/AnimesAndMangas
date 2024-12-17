@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { allMangas } from "../../reduces/mangaReduces";
-import { Row, Col, Card } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
-import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
-import NavbarComponent from "../Navbar/Navbar";
+import "./RelatedProducts.css";
 
 const RelatedProducts = ({ category }) => {
   const { _id } = useParams();
@@ -34,8 +33,9 @@ const RelatedProducts = ({ category }) => {
       }
     }
   }, [mangas, category, _id]);
-  const handleDetailsProducts = (_id) => {
-    navigate(`/details/${_id}`);
+
+  const handleDetailsProducts = (productId, productType) => {
+    navigate(`/details/${productType}/${productId}`);
   };
 
   const getImageUrl = (file) => {
@@ -48,38 +48,28 @@ const RelatedProducts = ({ category }) => {
     }
 
     return products.map((product) => (
-      <Col md={3} key={product._id}>
-        <Card
-          className="mb-4"
-          onClick={() => handleDetailsProducts(product._id)}
+      <Col
+        xs={6}
+        sm={4}
+        md={3}
+        key={product._id}
+        className="d-flex justify-content-center mb-4"
+      >
+        <div
+          className="card-custom"
+          onClick={() => handleDetailsProducts(product._id, product.type)}
         >
-          <Card.Img
-            variant="top"
-            src={getImageUrl(product.file)}
-            alt={product.name}
-          />
-          <Card.Body>
-            <Card.Title>{product.name}</Card.Title>
-            <Card.Text>€{product.price}</Card.Text>
-            <div className="d-flex justify-content-between align-items-center">
-              <span>
-                {product.availability > 0 ? (
-                  <FaCheckCircle color="green" />
-                ) : (
-                  <FaTimesCircle color="red" />
-                )}
-              </span>
-              <span className="price-with-icon">€{product.price}</span>
-            </div>
-            <div className="product-description">
-              <p>
-                {product.description.length > 100
-                  ? product.description.substring(0, 100) + "..."
-                  : product.description}
-              </p>
-            </div>
-          </Card.Body>
-        </Card>
+          <img className="card-custom-img" src={getImageUrl(product.file)} />
+          <div className="card-body-custom">
+            <h5 className="card-title">{product.name}</h5>
+            <p className="card-text">€{product.price}</p>
+            <p>
+              {product.description.length > 100
+                ? product.description.substring(0, 100) + "..."
+                : product.description}
+            </p>
+          </div>
+        </div>
       </Col>
     ));
   };
@@ -87,7 +77,7 @@ const RelatedProducts = ({ category }) => {
   return (
     <div className="text-center mt-5">
       <h3>Prodotti Correlati</h3>
-      <Row>
+      <Row className="d-flex justify-content-center">
         {relatedProducts.length > 0
           ? renderProducts(relatedProducts.slice(0, 4))
           : renderProducts(

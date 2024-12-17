@@ -1,72 +1,58 @@
 const express = require("express");
 const Seller = require("../modules/seller");
-const validateSeller = require("../middleware/validationSeller");
-const Manga = require("../modules/manga");
-const bcrypt = require("bcrypt");
+
 const mongoose = require("mongoose");
 const seller = express.Router();
 
-seller.post("/seller/create", validateSeller, async (req, res, next) => {
+seller.post("/seller/create", async (req, res, next) => {
   try {
     const {
       email,
       password,
+      surname,
+      username,
       birthYear,
       address,
-      username,
-      surname,
       shopName,
       shopAddress,
       vatNumber,
       phone,
       website,
-      mangaId,
     } = req.body;
 
     if (
       !email ||
       !password ||
+      !surname ||
+      !username ||
       !birthYear ||
       !address ||
-      !username ||
-      !surname ||
       !shopName ||
       !shopAddress ||
       !vatNumber
     ) {
-      return next({
-        type: "validation",
-        message: "All mandatory seller fields must be filled.",
-      });
+      return res
+        .status(400)
+        .json({ error: "All mandatory fields must be filled." });
     }
 
-    const normalizedVatNumber = vatNumber.trim().toLowerCase();
-    const existingVatNumber = await Seller.findOne({
-      "sellerDetails.vatNumber": normalizedVatNumber,
-    });
-
-    if (existingVatNumber) {
-      return next({
-        type: "validation",
-        message: "VAT number is already registered.",
-      });
+    const existingSeller = await Seller.findOne({ email });
+    if (existingSeller) {
+      return res.status(400).json({ error: "Email already in use." });
     }
-
-    const birthDate = new Date(birthYear);
-    const hashedPassword = await bcrypt.hash(password, 10);
 
     const newSeller = new Seller({
       email,
-      password: hashedPassword,
-      birthYear: birthDate,
-      address,
-      username,
+      password,
       surname,
+      username,
+      birthYear,
+      address,
       role: "seller",
       sellerDetails: {
         shopName,
         shopAddress,
-        vatNumber: normalizedVatNumber,
+        vatNumber,
         phone,
         website,
       },
@@ -74,34 +60,9 @@ seller.post("/seller/create", validateSeller, async (req, res, next) => {
 
     await newSeller.save();
 
-    if (mangaId && mongoose.Types.ObjectId.isValid(mangaId)) {
-      const mangaExists = await Manga.findById(mangaId);
-      if (!mangaExists) {
-        return next({
-          type: "validation",
-          message:
-            "The manga with the provided ID does not exist in the database.",
-        });
-      }
-
-      await Seller.findByIdAndUpdate(
-        newSeller._id,
-        { $push: { createdManga: mangaId } },
-        { new: true }
-      );
-    }
-
-    res.status(201).json({
-      message: "Seller successfully registered.",
-      seller: {
-        _id: newSeller._id,
-        email: newSeller.email,
-        username: newSeller.username,
-        createdManga: newSeller.createdManga || [],
-      },
-      manga: mangaId ? { _id: mangaId } : null,
-    });
+    res.status(201).json({ message: "Seller successfully created." });
   } catch (err) {
+    console.error(err);
     next(err);
   }
 });

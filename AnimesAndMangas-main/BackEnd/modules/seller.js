@@ -67,21 +67,16 @@ const sellerSchema = new mongoose.Schema(
   { timestamps: true, strict: true }
 );
 
-// Hashing della password
 sellerSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
   try {
     const salt = await bcrypt.genSalt(10);
     this.password = await bcrypt.hash(this.password, salt);
+
     next();
   } catch (err) {
     next(err);
   }
 });
-
-// Metodo per confrontare le password
-sellerSchema.methods.comparePassword = async function (password) {
-  return bcrypt.compare(password, this.password);
-};
 
 module.exports = mongoose.model("Seller", sellerSchema, "seller");

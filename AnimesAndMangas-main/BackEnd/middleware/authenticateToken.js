@@ -1,25 +1,27 @@
 const jwt = require("jsonwebtoken");
 
 const authenticateToken = (req, res, next) => {
-  const authHeader = req.headers["authorization"];
+  const userToken = req.header("Authorization");
 
-  const token = authHeader && authHeader.replace(/\s+/g, " ").split(" ")[1];
-
-  if (!token) {
-    console.error("Token mancante o header Authorization non valido");
-    return res.status(401).json({ error: "Token is missing or invalid" });
+  if (!userToken) {
+    return res.status(401).send({
+      statusCode: 401,
+      message: "Token not valid or not passed",
+    });
   }
 
-  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
-    if (err) {
-      console.error("Errore nella verifica del token:", err.message);
-      return res.status(403).json({ error: "Invalid token" });
-    }
-
-    req.user = user;
+  try {
+    const token = userToken.replace("Bearer ", "");
+    const verifiedToken = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = verifiedToken;
 
     next();
-  });
+  } catch (error) {
+    res.status(403).send({
+      statusCode: 403,
+      message: "Token expired or not valid",
+    });
+  }
 };
 
 module.exports = authenticateToken;

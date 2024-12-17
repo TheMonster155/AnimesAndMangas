@@ -10,6 +10,7 @@ import {
   selectError,
 } from "../../reduces/commentsRedux";
 import useSession from "../../hohcks/useSession";
+import CommentSection from "./Comment/CommentSection"; // Importa il nuovo componente
 
 const ProductComments = ({ productId, productType, userRole }) => {
   const dispatch = useDispatch();
@@ -50,7 +51,7 @@ const ProductComments = ({ productId, productType, userRole }) => {
       rate: rating,
       comment: newComment,
       productType: productId,
-      user: sessionData.userId,
+      user: sessionData._id,
     };
 
     dispatch(addReview(commentData))
@@ -87,65 +88,20 @@ const ProductComments = ({ productId, productType, userRole }) => {
   };
 
   return (
-    <div className="product-comments">
-      <h3>Commenti</h3>
-      {message && (
-        <div className={`message ${message.type}`}>{message.text}</div>
-      )}
-      {isLoading && <div>Caricamento in corso...</div>}
-      {error && <div className="error">{error}</div>}
-      {sessionData && (
-        <div className="add-comment-form">
-          <textarea
-            value={newComment}
-            onChange={(e) => setNewComment(e.target.value)}
-            placeholder="Scrivi un commento..."
-          />
-
-          <div>
-            <span>Voto: </span>
-            <select
-              value={rating}
-              onChange={(e) => setRating(Number(e.target.value))}
-            >
-              {[1, 2, 3, 4, 5].map((value) => (
-                <option key={value} value={value}>
-                  {value}
-                </option>
-              ))}
-            </select>
-          </div>
-          <button onClick={handleAddComment}>Aggiungi commento</button>
-        </div>
-      )}
-
-      <div className="comments-list">
-        {reviews.length > 0 ? (
-          reviews.map((comment) => (
-            <div key={comment._id} className="comment-item">
-              <p>Author: {comment.user.username}</p>
-              <p>
-                <strong>Voto:</strong> {comment.rate}
-              </p>
-              <p>{comment.comment}</p>
-
-              {sessionData && sessionData.userId === comment.user._id && (
-                <div className="comment-actions">
-                  <button onClick={() => handleEditComment(comment._id)}>
-                    Modifica
-                  </button>
-                  <button onClick={() => handleDeleteComment(comment._id)}>
-                    Elimina
-                  </button>
-                </div>
-              )}
-            </div>
-          ))
-        ) : (
-          <p>Nessun commento disponibile.</p>
-        )}
-      </div>
-    </div>
+    <CommentSection
+      reviews={reviews}
+      isLoading={isLoading}
+      error={error}
+      message={message}
+      sessionData={sessionData}
+      newComment={newComment}
+      setNewComment={setNewComment}
+      rating={rating}
+      setRating={setRating}
+      handleAddComment={handleAddComment}
+      handleEditComment={handleEditComment}
+      handleDeleteComment={handleDeleteComment}
+    />
   );
 };
 

@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema(
     },
     role: {
       type: String,
-      enum: ["user", "admin"],
+      enum: ["user", "admin", "seller"],
       default: "user",
     },
     username: {
@@ -48,7 +48,6 @@ const userSchema = new mongoose.Schema(
   { timestamps: true, strict: true }
 );
 
-// Hashing della password
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
   try {
@@ -59,10 +58,5 @@ userSchema.pre("save", async function (next) {
     next(err);
   }
 });
-
-// Metodo per confrontare le password
-userSchema.methods.comparePassword = async function (password) {
-  return bcrypt.compare(password, this.password);
-};
 
 module.exports = mongoose.model("User", userSchema, "user");

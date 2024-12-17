@@ -1,0 +1,38 @@
+.mangaCreate-up{
+    height: 200px;
+}
+.mangaCreate-down{
+    height: 200px;
+}
+
+
+
+
+.manga-form-container {
+    max-width: 2000px; 
+    width: 90%; 
+    margin: 0 auto; 
+  }
+ 
+  .manga-form-container input,
+  .manga-form-container select,
+  .manga-form-container textarea {
+    width: 100%; 
+    padding: 10px;
+    font-size: 1rem;
+  }
+  
+  
+  @media (max-width: 768px) {
+    .manga-form-container {
+      width: 95%; 
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .manga-form-container {
+      width: 100%; 
+      padding: 0 10px; 
+    }
+  }
+  

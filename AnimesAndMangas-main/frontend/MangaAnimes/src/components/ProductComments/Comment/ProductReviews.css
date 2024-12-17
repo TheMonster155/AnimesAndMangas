@@ -1,0 +1,97 @@
+
+.product-comments {
+  max-width: 100%;
+  padding: 10px;
+  font-family: Arial, sans-serif;
+}
+
+
+.comments-list {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; 
+}
+
+.add-comment-container {
+  margin: 20px auto; 
+  padding: 20px; 
+  background-color: #f9f9f9;
+  border: 1px solid #ddd; 
+  border-radius: 8px;
+  width: 90%; 
+  max-height: 500px;
+  box-sizing: border-box;
+}
+.comment-item {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); 
+  margin-bottom: 20px; 
+  width: 90%; 
+  box-sizing: border-box;
+  min-width: 40px; 
+  font-size: 16px; 
+  line-height: 1.6; 
+}
+.review-textarea {
+  width: 100%;
+  max-width: 100%;
+  max-height: 100px;
+  border: none;
+}
+
+
+@media (max-width: 768px) {
+
+  .product-comments {
+    padding: 15px;
+    width: 100%;
+  }
+
+
+  .review-textarea {
+    height: 100px;
+    max-height: 50px;
+  }
+
+
+  .rating-select {
+    flex-direction: column;
+    margin-bottom: 15px;
+  }
+
+  .rating-select-input {
+    width: 100%;
+    margin-top: 5px;
+  }
+
+
+  .add-button {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+  }
+
+  .comment-item {
+    width: 100%;
+    padding: 15px; 
+    font-size: 14px; 
+  }
+  .comments-list {
+    justify-content: center;
+  }
+
+  .comment-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .edit-button,
+  .delete-button {
+    width: 100%;
+    margin-bottom: 5px;
+  }
+}

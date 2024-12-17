@@ -5,6 +5,7 @@ import "./OrderForm.css";
 import useSession from "../../hohcks/useSession";
 import { FaTrash } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import NavbarComponent from "../Navbar/Navbar";
 
 const OrderForm = () => {
   const {
@@ -44,6 +45,7 @@ const OrderForm = () => {
 
     const orderData = {
       userId: session._id,
+
       items: cart.map((item) => {
         const itemData = {
           quantity: item.quantity,
@@ -81,10 +83,12 @@ const OrderForm = () => {
 
       if (!response.ok) {
         const errorData = await response.json();
+
         throw new Error(errorData.message || "Order creation error");
       }
 
       const { clientSecret } = await response.json();
+
       const result = await stripe.confirmCardPayment(clientSecret, {
         payment_method: { card: elements.getElement(CardElement) },
       });
@@ -107,134 +111,156 @@ const OrderForm = () => {
       setIsSubmitting(false);
     }
   };
+
   return (
-    <div className="orderFormBody  ">
-      <h1>Carrello</h1>
-      {cart.length > 0 ? (
-        <>
-          {cart.map((item) => (
-            <div key={item._id} className="cartItem row">
-              <div className="cartItemImageWrapper col-3">
-                <img
-                  src={item.file.url}
-                  alt={item.title}
-                  className="cartItemImage"
-                />
-              </div>
-
-              <div className="cartItemDetails col-9">
-                <h4>{item.title}</h4>
-
-                <div className="quantityWrapper">
-                  <button
-                    className="btn btn-outline-secondary"
-                    onClick={() => decrementQuantity(item._id)}
-                  >
-                    -
-                  </button>
-                  <span>{item.quantity}</span>
-                  <button
-                    className="btn btn-outline-secondary"
-                    onClick={() => incrementQuantity(item._id)}
-                  >
-                    +
-                  </button>
+    <>
+      <NavbarComponent />
+      <div className="orderFormBody">
+        <h1>Carrello</h1>
+        {cart.length > 0 ? (
+          <>
+            {cart.map((item) => (
+              <div key={item._id} className="cartItem row mb-3">
+                <div className="cartItemImageWrapper col-12 col-md-3">
+                  <img
+                    src={item.file.url}
+                    alt={item.title}
+                    className="cartItemImage img-fluid"
+                  />
                 </div>
 
-                <p>Prezzo unitario: €{item.price}</p>
+                <div className="cartItemDetails col-12 col-md-9">
+                  <h4>{item.title}</h4>
 
-                <p>Totale: €{(item.price * item.quantity).toFixed(2)}</p>
+                  <div className="quantityWrapper">
+                    <button
+                      className="btn btn-outline-secondary"
+                      onClick={() => decrementQuantity(item._id)}
+                    >
+                      -
+                    </button>
+                    <span>{item.quantity}</span>
+                    <button
+                      className="btn btn-outline-secondary"
+                      onClick={() => incrementQuantity(item._id)}
+                    >
+                      +
+                    </button>
+                  </div>
 
-                <button
-                  className="btn btn-danger"
-                  onClick={() => removeFromCart(item._id)}
-                >
-                  <FaTrash />
-                </button>
+                  <p>Prezzo unitario: €{item.price}</p>
+                  <p>Totale: €{(item.price * item.quantity).toFixed(2)}</p>
+
+                  <button
+                    className="btn btn-danger"
+                    onClick={() => removeFromCart(item._id)}
+                  >
+                    <FaTrash />
+                  </button>
+                </div>
+              </div>
+            ))}
+
+            <div className="cartTotal">
+              <h3>Total: €{cartTotal}</h3>
+            </div>
+
+            <div className="shippingForm">
+              <h2>Indirizzo di spedizione</h2>
+              <div className="mb-3">
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Nome"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="mb-3">
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Indirizzo"
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="mb-3">
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Città"
+                  value={city}
+                  onChange={(e) => setCity(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="mb-3">
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="CAP"
+                  value={postalCode}
+                  onChange={(e) => setPostalCode(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="mb-3">
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Paese"
+                  value={country}
+                  onChange={(e) => setCountry(e.target.value)}
+                  required
+                />
               </div>
             </div>
-          ))}
 
-          <div className="cartTotal">
-            <h3>Total: €{cartTotal}</h3>
-          </div>
+            <div className="stripeWrapper row">
+              <div className="col-12 col-md-8">
+                <CardElement className="form-control" />
+              </div>
 
-          <div className="shippingForm">
-            <h2>Indirizzo di spedizione</h2>
-            <div className="mb-3">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Nome"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-              />
-            </div>
-            <div className="mb-3">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Indirizzo"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-                required
-              />
-            </div>
-            <div className="mb-3">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Città"
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
-                required
-              />
-            </div>
-            <div className="mb-3">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="CAP"
-                value={postalCode}
-                onChange={(e) => setPostalCode(e.target.value)}
-                required
-              />
-            </div>
-            <div className="mb-3">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Paese"
-                value={country}
-                onChange={(e) => setCountry(e.target.value)}
-                required
-              />
-            </div>
-          </div>
+              <div className="col-12 col-md-4 d-flex flex-column align-items-center justify-content-center">
+                {isConfirmed ? (
+                  <>
+                    <div className="row mb-3">
+                      <button
+                        className="btn btn-primary w-100"
+                        onClick={handleSubmitOrder}
+                        disabled={isSubmitting}
+                      >
+                        {isSubmitting ? "Processing..." : "Conferma Ordine"}
+                      </button>
+                    </div>
 
-          {isConfirmed ? (
-            <div className="stripeWrapper">
-              <CardElement />
-              <button
-                className="btn btn-primary"
-                onClick={handleSubmitOrder}
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? "Processing..." : "Conferma Ordine"}
-              </button>
-              {orderMessage && <p>{orderMessage}</p>}
+                    {orderMessage && (
+                      <div className="row w-100">
+                        <p>{orderMessage}</p>
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <div className="row">
+                    <button
+                      className="btn btn-success w-100"
+                      onClick={handleConfirmOrder}
+                    >
+                      Conferma Ordine
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
-          ) : (
-            <button className="btn btn-success" onClick={handleConfirmOrder}>
-              Conferma Ordine
-            </button>
-          )}
-        </>
-      ) : (
-        <p>Il carrello è vuoto.</p>
-      )}
-    </div>
+          </>
+        ) : (
+          <p>Il carrello è vuoto.</p>
+        )}
+      </div>
+    </>
   );
 };
 

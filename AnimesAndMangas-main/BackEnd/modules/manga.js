@@ -48,13 +48,13 @@ const mangaSchema = new mongoose.Schema(
     ],
     language: { type: String, required: false, trim: true },
     price: { type: Number, required: true },
-    availability: { type: Number, default: 100 }, // default 100
+    availability: { type: Number, default: 100 },
     releaseDate: { type: Date, required: false },
 
     file: { type: Object, required: false },
     description: { type: String, required: false, trim: true },
     comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment" }],
-    seller: [{ type: mongoose.Schema.Types.ObjectId, ref: "Seller" }], // ID del venditore
+    seller: [{ type: mongoose.Schema.Types.ObjectId, ref: "Seller" }],
   },
   {
     timestamps: true,

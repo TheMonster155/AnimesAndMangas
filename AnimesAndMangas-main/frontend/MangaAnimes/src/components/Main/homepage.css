@@ -114,6 +114,7 @@
   .carousel-item {
     transition: transform 1s ease;
   }
+
   .custom-button {
     padding: 8px 16px; 
     background-color: #ff6347; 
@@ -122,6 +123,8 @@
     border-radius: 30px; 
     font-size: 14px; 
     font-weight: bold;
+    display: block; 
+    margin: 10px auto; 
     text-transform: uppercase; 
     cursor: pointer;
     transition: background-color 0.3s ease, border-color 0.3s ease;
@@ -145,6 +148,64 @@
   }
   
   
+.card-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.card-custom {
+  width: 20rem;
+  height: 30rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 20px; 
+  position: relative;
+}
+
+
+.card-custom img {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  width: 100%;
+  height: 330px;
+  object-fit: cover; 
+  transition: transform 0.3s ease; 
+}
+
+
+.card-custom:hover {
+  transform: translateY(-5px); 
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); 
+}
+
+
+.card-body-custom {
+  padding: 15px;
+  background-color: #fff;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  flex-direction: column; 
+  align-items: center; 
+  justify-content: flex-end; 
+}
+
+
+.card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+  text-overflow: ellipsis; 
+}
+
+
+.card-text {
+  font-size: 1.1rem;
+  color: #4CAF50;
+}
   
   
   @media (max-width: 576px) {

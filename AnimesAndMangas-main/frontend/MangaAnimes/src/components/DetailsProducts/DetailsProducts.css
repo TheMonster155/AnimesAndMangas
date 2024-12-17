@@ -1,9 +1,9 @@
 .manga-space-up {
-    height: 100px;
+    height: 300px;
   }
   
   .manga-space-down {
-    height: 30px;
+    height: 100px;
   }
   
   .product-image-container {
@@ -17,7 +17,7 @@
   }
   
   .product-details {
-    padding-left: 15px;
+    padding-left: 50px;
   }
   
   .text-red {
@@ -39,3 +39,72 @@
   .details-space{
     height: 100px;
   }
+  .details_containe{
+    
+    text-align: center;
+  }
+ 
+.details-products-container {
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  
+  flex-direction: column;
+}
+
+.details_container {
+  display: flex;
+  flex-direction: column; 
+  align-items: center; 
+  width: 100%;
+  
+  padding: 0 15px; 
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; 
+}
+
+.product-image-container {
+  display: flex;
+  justify-content: center;
+  flex: 1 1 50%;
+}
+
+.product-image_details {
+  max-width: 100%; 
+  height: auto;
+}
+
+.product-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex: 1 1 50%;
+}
+
+.add-to-cart-button {
+  margin-top: 20px;
+}
+
+.manga-space-up, .manga-space-down {
+  height: 20px;
+}
+
+.text-red {
+  color: red;
+}
+
+
+.related-comments-container {
+  display: flex;
+  flex-direction: column; 
+}
+
+.related-comments-container > *:not(:last-child) {
+  margin-bottom: 50px; 
+}
