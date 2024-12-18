@@ -37,7 +37,6 @@ const App = () => {
       <Route path="/details/:productType/:_id" element={<DetailsProducts />} />
       <Route path="/contact" element={<ContactPage />} />
       <Route path="/MangaList/:type" element={<MangaList />} />
-
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
