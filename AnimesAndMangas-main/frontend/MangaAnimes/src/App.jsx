@@ -17,7 +17,6 @@ import DetailsProducts from "./components/DetailsProducts/DetailsProducts";
 
 import MangaList from "./components/MangaList/MangaList";
 import ContactPage from "./pages/ContactPage/ContactPage";
-
 import NotFoundPage from "./components/NotFoundPage/notfoundpage";
 
 const App = () => {
