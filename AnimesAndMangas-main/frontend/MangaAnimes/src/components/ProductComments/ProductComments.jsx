@@ -10,7 +10,7 @@ import {
   selectError,
 } from "../../reduces/commentsRedux";
 import useSession from "../../hohcks/useSession";
-import CommentSection from "./Comment/CommentSection"; // Importa il nuovo componente
+import CommentSection from "./Comment/CommentSection";
 
 const ProductComments = ({ productId, productType, userRole }) => {
   const dispatch = useDispatch();

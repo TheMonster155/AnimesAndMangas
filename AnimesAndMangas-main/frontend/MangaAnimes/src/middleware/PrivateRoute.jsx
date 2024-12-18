@@ -1,6 +1,6 @@
 import HomePage from "../components/Homepage2/HomePage2";
 import { Outlet, useLocation } from "react-router-dom";
-import NotFoundPage from "../components/NotFoundPage/notfoundpage";
+import NotFoundPage from "../pages/NotFoundPages/NotFoundPages";
 export const isAuth = () => {
   const token = localStorage.getItem("Authorization");
   const location = useLocation();

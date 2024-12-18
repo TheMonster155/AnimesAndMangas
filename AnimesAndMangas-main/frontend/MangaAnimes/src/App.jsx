@@ -17,7 +17,7 @@ import DetailsProducts from "./components/DetailsProducts/DetailsProducts";
 
 import MangaList from "./components/MangaList/MangaList";
 import ContactPage from "./pages/ContactPage/ContactPage";
-import NotFoundPage from "./components/NotFoundPage/notfoundpage";
+import NotFoundPages from "./pages/NotFoundPages/NotFoundPages";
 
 const App = () => {
   return (
@@ -37,7 +37,7 @@ const App = () => {
       <Route path="/details/:productType/:_id" element={<DetailsProducts />} />
       <Route path="/contact" element={<ContactPage />} />
       <Route path="/MangaList/:type" element={<MangaList />} />
-      <Route path="*" element={<NotFoundPage />} />
+      <Route path="*" element={<NotFoundPages />} />
     </Routes>
   );
 };

@@ -4,7 +4,7 @@ import { Container, Button } from "react-bootstrap";
 import NavbarComponent from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
 import useSession from "../../hohcks/useSession";
-
+import "./Dashboard.css";
 const Dashboard = () => {
   const navigate = useNavigate();
   const [userInfo, setUserInfo] = useState(null);
@@ -29,7 +29,7 @@ const Dashboard = () => {
       <div className="dashboard-up" />
       <Container className="mt-5">
         {userInfo ? (
-          <div className="dashboard-up">
+          <div>
             <h2>Benvenuto, Venditore {userInfo.userId}</h2>
 
             <div className="mt-4">
