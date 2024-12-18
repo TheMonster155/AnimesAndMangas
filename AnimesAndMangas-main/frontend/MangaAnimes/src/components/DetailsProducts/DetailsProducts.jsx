@@ -14,6 +14,7 @@ import NavbarComponent from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import "./DetailsProducts.css";
 import { CartContext } from "../Context/CartContext";
+import Swal from "sweetalert2";
 
 const DetailsProducts = () => {
   const { addToCart } = useContext(CartContext);
@@ -30,6 +31,12 @@ const DetailsProducts = () => {
   }, [dispatch, productType]);
   const handleAddToCart = (product) => {
     addToCart(product);
+    Swal.fire({
+      title: "Aggiuto al Carrello",
+      text: `${product.name} E stato aggiugto al carello`,
+      icon: "success",
+      confirmButtonText: "OK",
+    });
   };
 
   const product = mangas.find((manga) => manga._id === _id);

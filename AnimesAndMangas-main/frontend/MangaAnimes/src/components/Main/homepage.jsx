@@ -18,6 +18,7 @@ import CaroselloFigure from "./Crarusel/CaroselloFigure";
 import ImageCarousel from "./Crarusel/ImageCarousel";
 
 import "./homepage.css";
+import Swal from "sweetalert2";
 
 const HomePage = () => {
   const { addToCart } = useContext(CartContext);
@@ -35,6 +36,12 @@ const HomePage = () => {
 
   const handleAddToCart = (product) => {
     addToCart(product);
+    Swal.fire({
+      title: "Aggiuto al Carrello",
+      text: `${product.name} E stato aggiugto al carello`,
+      icon: "success",
+      confirmButtonText: "OK",
+    });
   };
 
   const handleDetailsProducts = (_id, type) => {

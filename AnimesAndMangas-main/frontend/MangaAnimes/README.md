@@ -8,200 +8,152 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
   MangaAnimes
 
-MangaAnimes è un sito web dedicato alla vendita di manga, anime e action figure, progettato per offrire un’esperienza utente moderna e intuitiva. L’applicazione è divisa in due parti: backend e frontend.
+MangaAnimes - README
+Descrizione del Progetto
+MangaAnimes è un ecommerce dedicato alla vendita di manga, anime e action figure, progettato per offrire un’esperienza utente moderna e intuitiva. Il sito prevede due tipi di utenti:
 
-Backend
+Seller:
 
-Il backend gestisce la logica di business, la gestione dei dati e l’autenticazione.
+Può vendere prodotti, aggiungere nuovi articoli al catalogo, gestire gli ordini e lasciare commenti sui prodotti.
+Non ha la possibilità di acquistare prodotti sul sito.
+User:
 
-Struttura delle cartelle
+Può registrarsi, accedere ai dettagli dei prodotti, lasciare recensioni e completare acquisti.
+Funzionalità Principali
+Autenticazione e Autorizzazione:
 
-middleware: Contiene middleware personalizzati per la gestione di errori, autenticazione, ecc.
+Login tradizionale o tramite Google , grazie a Passport.js.
+Gestione della sessione basata su token JWT con middleware authenticateToken.
+Gestione dei Prodotti:
 
-modules: Gestisce i moduli principali dell’applicazione.
+I seller possono caricare nuovi prodotti con descrizioni, immagini e dettagli.
+Gli utenti possono sfogliare i manga, gli anime e le action figure in homepage.
+Ogni prodotto ha una pagina di dettagli completa.
+Carrello e Pagamenti:
 
-routes: Definisce le rotte API del backend.
+Il carrello è gestito tramite Redux Toolkit.
+Gli utenti possono aggiungere prodotti al carrello e completare acquisti.
+Integrazione con Stripe per pagamenti sicuri.
+I seller non hanno accesso al carrello o alla funzionalità di acquisto.
+Commenti:
 
-Tecnologie utilizzate
+Gli utenti e i seller possono recensire prodotti nella pagina Details.
+Sistema di moderazione tramite middleware per prevenire contenuti inappropriati.
+Gestione delle Immagini:
 
-Express.js: Framework web per Node.js.
+Caricamento e gestione delle immagini tramite Cloudinary.
+Notifiche e Comunicazioni:
 
-MongoDB con Mongoose: Database NoSQL per la persistenza dei dati.
+Notifiche interattive tramite SweetAlert2.
+Invio di email per conferme ordini e supporto tramite SendGrid.
+Tecnologie Utilizzate
+Frontend:
+Framework e Librerie:
 
-JWT: Per l’autenticazione basata su token.
+React con JSX
+React Router DOM
+Redux Toolkit
+Bootstrap
+Strumenti di UI:
 
-SendGrid e Nodemailer: Per l’invio di email.
+SweetAlert2 per notifiche interattive.
+React Icons per icone accattivanti.
+Gestione Stato:
 
-Cloudinary: Per il caricamento e la gestione delle immagini.
+cartSlice per il carrello.
+commentSlice per la gestione dei commenti.
+Backend:
+Framework e Librerie:
 
-Passport: Per l’autenticazione tramite provider esterni (Google, GitHub).
+Express.js per la logica server-side.
+Mongoose per la gestione dei dati in MongoDB.
+Multer e Cloudinary per la gestione delle immagini.
+SendGrid per l'invio di email.
+Passport.js per l’autenticazione tramite Google.
+Middleware:
 
-Stripe: Per la gestione dei pagamenti.
-
-Dipendenze principali
-
-{
-"@sendgrid/mail": "^8.1.4",
-"bcrypt": "^5.1.1",
-"cloudinary": "^1.41.3",
-"cors": "^2.8.5",
-"dotenv": "^16.4.5",
-"express": "^4.21.1",
-"express-session": "^1.18.1",
-"express-validator": "^7.2.0",
-"jsonwebtoken": "^9.0.2",
-"mongoose": "^8.8.2",
-"multer": "^1.4.5-lts.1",
-"multer-storage-cloudinary": "^4.0.0",
-"nodemailer": "^6.9.16",
-"passport": "^0.7.0",
-"passport-github2": "^0.1.12",
-"passport-google-oauth20": "^2.0.0",
-"stripe": "^17.3.1"
-}
-
-Comandi disponibili
-
-AnimesAndMangas-main\BackEnd> npm run dev: Avvia il server backend con Nodemon.
-
-Funzionalità
-
-Autenticazione JWT per utenti e amministratori.
-
-Supporto per login tramite Google e GitHub.
-
-Invio di email per conferme e notifiche.
-
-Caricamento di immagini su Cloudinary.
-
-Integrazione con Stripe per i pagamenti.
-
-Frontend
-
-Il frontend è progettato per fornire una UI reattiva e interattiva utilizzando React.
-
-Struttura delle cartelle
-
-components: Contiene componenti come:
-
-context: Gestione dello stato globale tramite il context API.
-
-homepage: Pagine iniziali del sito.
-
-navbar: Gestione della barra di navigazione.
-
-footer: Footer del sito.
-
-main: Componenti principali dell’applicazione.
-
-hooks: Include hook personalizzati, come la gestione della sessione.
-
-middleware: Contiene componenti come PrivateRoute per la protezione delle rotte.
-
-pages: Contiene pagine principali come Login, Register e MangaCreate.
-
-reducers: Gestisce lo stato globale tramite Redux.
-
-utils: Contiene funzioni di utilità, come la gestione dei token.
-
-Tecnologie utilizzate
-
-React con JSX: Per la creazione di componenti UI.
-
-Vite: Per lo sviluppo rapido e la gestione del build.
-
-Bootstrap: Per un design reattivo e accattivante.
-
-React Router DOM: Per la navigazione client-side.
-
-Redux Toolkit: Per la gestione dello stato globale.
-
-Stripe.js: Per la gestione sicura dei pagamenti.
-
-SweetAlert2: Per notifiche e dialoghi.
-
-Dipendenze principali
-
-{
-"@reduxjs/toolkit": "^2.4.0",
-"@stripe/react-stripe-js": "^3.0.0",
-"bootstrap": "^5.3.3",
-"jwt-decode": "^3.1.2",
-"react": "^18.3.1",
-"react-bootstrap": "^2.10.6",
-"react-dom": "^18.3.1",
-"react-icons": "^5.3.0",
-"react-redux": "^9.1.2",
-"react-router-dom": "^7.0.1",
-"reselect": "^5.1.1",
-"sweetalert2": "^11.14.5"
-}
-
-Comandi disponibili
-
-MangaAnimes-main\frontend\MangaAnimes> npm run dev: Avvia il server di sviluppo.
-
-npm run build: Compila il progetto per la produzione.
-
-npm run lint: Esegue ESLint per analizzare il codice.
-
-npm run preview: Avvia una versione preview dell’app compilata.
-
-Funzionalità
-
-Navigazione fluida tra le pagine.
-
-Integrazione con il backend per il recupero di dati dinamici.
-
-Pagamenti sicuri tramite Stripe.
-
-Notifiche interattive e conferme.
-
+authenticateToken per la protezione delle rotte.
+generalErrorMiddleware per la gestione degli errori.
+Struttura delle Cartelle
+Backend:
+middleware: Contiene middleware per l'autenticazione, la gestione degli errori e altro.
+modules: Gestisce i moduli principali dell'app (es. User, Product, Order).
+routes: Definisce le API del backend.
+Frontend:
+components: Contiene componenti come la navbar, il footer e moduli specifici per manga e action figure.
+context: Gestisce lo stato globale tramite Context API.
+hooks: Include hook personalizzati, come useSession.
+middleware: Componenti come PrivateRoute per proteggere le rotte.
+pages: Include le principali pagine del sito (Login, Register, Details).
+utils: Contiene funzioni di utilità, come la gestione dei token JWT.
 Installazione
+Clona il repository:
 
-Requisiti
-
-Node.js 16+
-
-MongoDB
-
-Passaggi
-
-Clona il repository.
-
+bash
+Copia codice
+git clone https://github.com/TheMonster155/AnimesAndMangas.git
 Installa le dipendenze:
 
-Backend: cd backend && npm install
+Backend:
+bash
+Copia codice
+cd backend
+npm install
+Frontend:
+bash
+Copia codice
+cd frontend
+npm install
+Configura i file .env per entrambe le parti del progetto:
 
-Frontend: cd frontend && npm install
+Backend:
 
-Configura i file .env per backend e frontend.
-
-Avvia il progetto:
-
-Backend: AnimesAndMangas-main\BackEnd> npm run dev
-
-Frontend: MangaAnimes-main\frontend\MangaAnimes> npm run dev
-
-Contributi
-
-I contributi sono benvenuti! Segui le linee guida nel file CONTRIBUTING.md per inviare PR o segnalare problemi.
-
-Licenza
-
-Questo progetto è distribuito sotto licenza MIT.
-
+makefile
+Copia codice
 DB_URI=""
-DEBUG_MODE
 JWT_SECRET=""
-
-FRONTEND_URL=""
 CLOUDINARY_CLOUD_NAME=""
 CLOUDINARY_API_KEY=""
 CLOUDINARY_API_SECRET=""
-VITE_STRIPE_SECRET_KEY= ""
-SENDGRID_API_KEY =""
+SENDGRID_API_KEY=""
 SENDER_EMAIL=""
 GOOGLE_CLIENT_ID=""
 GOOGLE_CLIENT_SECRET=""
 GOOGLE_CALLBACK_URL=""
+STRIPE_SECRET_KEY=""
+
+Frontend:
+
+makefile
+Copia codice
+VITE_SERVER_BASE_URL=""
+VITE_STRIPE_CLIENT_SECRET=""
+Avvia il progetto in locale:
+
+Backend:
+bash
+Copia codice
+cd backend
+npm run dev
+Frontend:
+bash
+Copia codice
+cd frontend
+cd MangaAnimes
+npm run dev
+Deploing:
+
+Backend su Render:
+Accedi a Render.
+Crea un nuovo servizio Web Service.
+Collega il repository del backend.
+Configura le variabili d’ambiente dal file .env.
+Avvia il servizio.
+Frontend su Vercel:
+Link del progetto: MangaAnimes su Vercel.
+https://animes-and-mangas-g7del6nl0-themonster155s-projects.vercel.app
+Crediti
+Progetto sviluppato da Jouttane Anass.
+
+Licenza
+Questo progetto è distribuito sotto licenza MIT.
