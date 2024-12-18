@@ -4,7 +4,9 @@ import { loadStripe } from "@stripe/stripe-js";
 import { CartContext } from "../Context/CartContext";
 import OrderForm from "../OrderForm/OrderForm";
 
-const stripePromise = loadStripe("pk_test_XUIpXpyaGuuw0Dc9Ng80xFWs");
+const stripePromise = loadStripe(
+  `${import.meta.env.VITE_STRIPE_CLIENT_SECRET}`
+);
 
 const WrappedOrderForm = () => {
   const { cart } = useContext(CartContext);
