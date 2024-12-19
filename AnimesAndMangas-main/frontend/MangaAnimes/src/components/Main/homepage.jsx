@@ -58,13 +58,6 @@ const HomePage = () => {
         <ImageCarousel handleImageClick={handleDetailsProducts} />
       </div>
 
-      <UltimeUscite
-        mangas={mangas}
-        isLoading={isLoading}
-        error={error}
-        handleAddToCart={handleAddToCart}
-        handleDetailsProducts={handleDetailsProducts}
-      />
       <CaroselloManga
         mangas={mangas}
         handleAddToCart={handleAddToCart}

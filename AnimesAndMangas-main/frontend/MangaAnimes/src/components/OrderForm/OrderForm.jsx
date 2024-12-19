@@ -152,7 +152,7 @@ const OrderForm = () => {
                   <p>Totale: €{(item.price * item.quantity).toFixed(2)}</p>
 
                   <button
-                    className="btn btn-danger"
+                    className="btn btn-danger special  w-25"
                     onClick={() => removeFromCart(item._id)}
                   >
                     <FaTrash />

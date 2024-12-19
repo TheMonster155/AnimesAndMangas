@@ -247,8 +247,10 @@ const SellerRegistration = () => {
                   required
                   type="date"
                 />
+                <span>DD-MM-YYYY</span>
               </div>
             </div>
+
             <div className="form-check my-3">
               <input
                 className="form-check-input"

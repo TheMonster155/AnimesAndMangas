@@ -19,7 +19,7 @@ const CaroselloFigure = ({
 
   return (
     <div className="text-center mt-5">
-      <h2>Carosello Figure</h2>
+      <h2>Figure</h2>
 
       <div className="d-none d-md-block">
         <Carousel className="carousel-large">

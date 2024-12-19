@@ -14,8 +14,10 @@ MangaAnimes è un ecommerce dedicato alla vendita di manga, anime e action figur
 
 Seller:
 
-Può vendere prodotti, aggiungere nuovi articoli al catalogo, gestire gli ordini e lasciare commenti sui prodotti.
+Può vendere prodotti, aggiungere nuovi articoli al catalogo, gestire gli ordini.
 Non ha la possibilità di acquistare prodotti sul sito.
+Non può lasciare commenti sui prodotti.
+
 User:
 
 Può registrarsi, accedere ai dettagli dei prodotti, lasciare recensioni e completare acquisti.
@@ -35,10 +37,13 @@ Il carrello è gestito tramite Redux Toolkit.
 Gli utenti possono aggiungere prodotti al carrello e completare acquisti.
 Integrazione con Stripe per pagamenti sicuri.
 I seller non hanno accesso al carrello o alla funzionalità di acquisto.
+Nota: Se si desidera pagare con Stripe, la carta deve essere "4242 4242 4242 4242".
+
 Commenti:
 
-Gli utenti e i seller possono recensire prodotti nella pagina Details.
-Sistema di moderazione tramite middleware per prevenire contenuti inappropriati.
+Gli utenti possono recensire prodotti nella pagina Details.
+I seller non possono lasciare commenti sui prodotti.
+
 Gestione delle Immagini:
 
 Caricamento e gestione delle immagini tramite Cloudinary.
@@ -46,6 +51,7 @@ Notifiche e Comunicazioni:
 
 Notifiche interattive tramite SweetAlert2.
 Invio di email per conferme ordini e supporto tramite SendGrid.
+
 Tecnologie Utilizzate
 Frontend:
 Framework e Librerie:
@@ -99,10 +105,12 @@ bash
 Copia codice
 cd backend
 npm install
+
 Frontend:
 bash
 Copia codice
 cd frontend
+cd MangaAnimes
 npm install
 Configura i file .env per entrambe le parti del progetto:
 
@@ -136,6 +144,7 @@ Copia codice
 cd backend
 npm run dev
 Frontend:
+
 bash
 Copia codice
 cd frontend

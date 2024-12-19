@@ -15,7 +15,7 @@ const CaroselloManga = ({ mangas, handleAddToCart, handleDetailsProducts }) => {
 
   return (
     <div className="text-center mt-5">
-      <h2>Carosello Manga</h2>
+      <h2> Manga</h2>
 
       <div className="d-none d-md-block">
         <Carousel>

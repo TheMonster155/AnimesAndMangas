@@ -86,18 +86,18 @@ const NavbarComponent = () => {
         </Link>
 
         <div className="navbar-nav mx-auto d-flex justify-content-center">
-          <ul className="navbar-nav d-flex flex-row">
-            <li className="nav-item">
+          <ul className="navbar-nav d-flex flex-row  justify-content-center align-items-center ">
+            <li className="nav-item  me-2 mt-2">
               <button
-                className="nav-link btn btn-link"
+                className="nav-link btn btn-link    "
                 onClick={() => navigateToCategory("Manga")}
               >
                 Manga
               </button>
             </li>
-            <li className="nav-item">
+            <li className="nav-item ms-2">
               <button
-                className="nav-link btn btn-link"
+                className="nav-link btn btn-link "
                 onClick={() => navigateToCategory("Figure")}
               >
                 Figure

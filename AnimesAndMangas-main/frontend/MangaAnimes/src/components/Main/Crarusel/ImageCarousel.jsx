@@ -4,13 +4,13 @@ import { Carousel } from "react-bootstrap";
 const ImageCarousel = ({ handleImageClick }) => {
   const carouselImages = [
     {
-      src: "https://res-console.cloudinary.com/dzdxelv4m/thumbnails/v1/image/upload/v1733498409/TWFuZ2FzLzIyNzMzOQ==/preview",
+      src: "https://res.cloudinary.com/dzdxelv4m/image/upload/v1733498409/Mangas/227339.jpg",
     },
     {
-      src: "https://res-console.cloudinary.com/dzdxelv4m/thumbnails/v1/image/upload/v1734067067/MzMyNDRfeWVvcmZp/drilldown",
+      src: "https://res.cloudinary.com/dzdxelv4m/image/upload/v1734067067/33244_yeorfi.jpg",
     },
     {
-      src: "https://res-console.cloudinary.com/dzdxelv4m/thumbnails/v1/image/upload/v1734076610/bmluamEtNzcwMTEyNl8xOTIwX21veWZzYQ==/drilldown",
+      src: "https://res.cloudinary.com/dzdxelv4m/image/upload/v1734076610/ninja-7701126_1920_moyfsa.jpg",
     },
   ];
 

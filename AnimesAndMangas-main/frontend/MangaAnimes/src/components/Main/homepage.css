@@ -233,6 +233,10 @@
     .carousel-medium {
       max-width: 95%; 
     }
+    .carousel-large img  {
+      height: 250px !important; 
+      object-fit: cover
+    }
   }
   
 
@@ -246,5 +250,6 @@
     .carousel-indicators {
       bottom: -30px; 
     }
+    
   }
   
