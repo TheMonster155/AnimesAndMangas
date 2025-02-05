@@ -22,7 +22,7 @@ const ImageCarousel = ({ handleImageClick }) => {
             <img
               src={image.src}
               alt={`carousel-image-${index + 1}`}
-              onClick={() => handleImageClick(image.src, "image")}
+              style={{ pointerEvents: "none" }}
             />
             {index === 1 && (
               <div className="carousel-text text-start position-absolute top-0 start-0 opacity-100">

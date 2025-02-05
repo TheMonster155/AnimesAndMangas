@@ -79,7 +79,7 @@ const NavbarComponent = () => {
       <div className="container">
         <Link to="/" className="navbar-brand d-flex align-items-center">
           <img
-            src="https://res-console.cloudinary.com/dzdxelv4m/thumbnails/v1/image/upload/v1734462695/YmdfZjhmOGY4LWZsYXRfNzUweF8wNzVfZi1wYWRfNzUweDEwMDBfZjhmOGY4X29tdWY1eA==/drilldown"
+            src="https://res.cloudinary.com/dzdxelv4m/image/upload/v1738780402/logo2_vtx71x.jpg"
             alt="Logo"
             className="logo-img"
           />

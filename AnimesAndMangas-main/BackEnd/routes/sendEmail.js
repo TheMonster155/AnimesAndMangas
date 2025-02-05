@@ -27,7 +27,7 @@ const sendEmail = async (msg, res, next, successMessage) => {
 };
 
 email.post("/send", emailSuccessHandler, async (req, res, next) => {
-  const { from, subject, text, html } = req.body;
+  const { from, subject, text } = req.body;
 
   try {
     const msg = {
@@ -36,7 +36,6 @@ email.post("/send", emailSuccessHandler, async (req, res, next) => {
       "reply-to": from,
       subject,
       text,
-      html,
     };
 
     await sgMail.send(msg);

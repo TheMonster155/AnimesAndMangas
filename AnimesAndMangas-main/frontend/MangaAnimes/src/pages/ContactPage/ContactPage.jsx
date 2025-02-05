@@ -20,23 +20,59 @@ const ContactPage = () => {
       [name]: value,
     }));
   };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    setTimeout(() => {
-      setIsSubmitting(false);
+    const messageData = {
+      from: formData.email, // Usato l'email dell'utente
+      subject: formData.subject, // Usato l'oggetto dell'utente
+      text: formData.message, // Usato il messaggio dell'utente
+    };
 
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_SERVER_BASE_URL}/send`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(messageData),
+        }
+      );
+
+      const result = await response.json();
+
+      if (response.ok) {
+        setIsSubmitting(false);
+        Swal.fire({
+          title: "Messaggio Inviato!",
+          text: result.message,
+          icon: "success",
+          confirmButtonText: "OK",
+        }).then(() => {
+          navigate("/");
+        });
+      } else {
+        setIsSubmitting(false);
+        Swal.fire({
+          title: "Errore!",
+          text: "C'è stato un problema nell'inviare il messaggio.",
+          icon: "error",
+          confirmButtonText: "OK",
+        });
+      }
+    } catch (error) {
+      setIsSubmitting(false);
+      console.error("Error sending email:", error);
       Swal.fire({
-        title: "Messaggio Inviato!",
-        text: "Il tuo messaggio è stato inviato con successo.",
-        icon: "success",
+        title: "Errore!",
+        text: "C'è stato un errore di rete.",
+        icon: "error",
         confirmButtonText: "OK",
-      }).then(() => {
-        navigate("/");
       });
-    }, 2000);
+    }
   };
 
   return (
