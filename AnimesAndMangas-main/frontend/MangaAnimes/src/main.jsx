@@ -8,6 +8,7 @@ import mangasReducer from "./reduces/mangaReduces.js";
 import reviewsReducer from "./reduces/commentsRedux.js";
 import { BrowserRouter } from "react-router-dom";
 import { CartContextProvider } from "./components/Context/CartContext.jsx";
+import ScrollToTop from "./components/ScrollToTop/ScrollToTop.jsx";
 
 const reducer = combineReducers({
   mangas: mangasReducer,
@@ -20,9 +21,7 @@ createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Provider store={store}>
       <CartContextProvider>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
+        <App />
       </CartContextProvider>
     </Provider>
   </StrictMode>

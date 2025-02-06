@@ -18,27 +18,34 @@ import DetailsProducts from "./components/DetailsProducts/DetailsProducts";
 import MangaList from "./components/MangaList/MangaList";
 import ContactPage from "./pages/ContactPage/ContactPage";
 import NotFoundPages from "./pages/NotFoundPages/NotFoundPages";
+import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 
 const App = () => {
   return (
-    <Routes>
-      <Route exact path="/" element={<HomePage2 />} />
-      <Route element={<PrivateRoute />}>
-        <Route path="/cart" element={<WrappedOrderForm />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-      </Route>
+    <BrowserRouter>
+      <ScrollToTop />
+      <Routes>
+        <Route exact path="/" element={<HomePage2 />} />
+        <Route element={<PrivateRoute />}>
+          <Route path="/cart" element={<WrappedOrderForm />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Route>
 
-      <Route path="/mangacreate" element={<CreateManga />} />
-      <Route path="/registationSeller" element={<SellerRegistration />} />
-      <Route path="/registationUser" element={<UserRegistration />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/success" element={<SuccessGoogle />} />
+        <Route path="/mangacreate" element={<CreateManga />} />
+        <Route path="/registationSeller" element={<SellerRegistration />} />
+        <Route path="/registationUser" element={<UserRegistration />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/success" element={<SuccessGoogle />} />
 
-      <Route path="/details/:productType/:_id" element={<DetailsProducts />} />
-      <Route path="/contact" element={<ContactPage />} />
-      <Route path="/MangaList/:type" element={<MangaList />} />
-      <Route path="*" element={<NotFoundPages />} />
-    </Routes>
+        <Route
+          path="/details/:productType/:_id"
+          element={<DetailsProducts />}
+        />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/MangaList/:type" element={<MangaList />} />
+        <Route path="*" element={<NotFoundPages />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
 
